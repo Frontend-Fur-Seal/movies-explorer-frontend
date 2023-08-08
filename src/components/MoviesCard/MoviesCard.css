@@ -1,0 +1,108 @@
+.moviesCard{
+max-width: 360px;
+}
+
+.moviesCard__img{
+    position: relative;
+    max-width: 360px;
+}
+
+.moviesCard__element{
+    max-width: 100%;
+}
+
+.moviesCard__saveMovie{
+    position: absolute;
+    background-color: #313131;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 9px;
+    width: 72px;
+    height: 21px;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+}
+
+.moviesCard__info{
+    max-width: 332px;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 9px;
+    box-sizing: border-box;
+}
+
+.moviesCard__name{
+    font-weight: 500;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+
+.moviesCard__duration{
+    width: 52px;
+    height: 18px;
+    background-color: #2F2F2F;
+    color: #8B8B8B;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 10px;
+    border-radius: 3px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moviesCard__saveMovie_saved{
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background-color: #EE3465;
+  background-image: url(../../images/movieSaved.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: absolute;
+  border: none;
+  top: 14px;
+  right: 14px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 980px) {
+    .moviesCard__name{
+      max-width: 250px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: 15px;
+      white-space: nowrap 
+    }
+    .moviesCard__info{
+        margin: 0;
+        max-width: 339px;
+        padding-top: 22px;
+      }
+  }
+
+@media screen and (max-width: 600px) {
+    .moviesCard__saveMovie{
+        top: 9px;
+        right: 9px;
+    }
+    .moviesCard__saveMovie_saved{
+        top: 9px;
+        right: 9px;
+    }
+    .moviesCard__name{
+        font-size: 12px;
+    }
+    .moviesCard__info{
+        padding-top: 12px;
+      }
+}
