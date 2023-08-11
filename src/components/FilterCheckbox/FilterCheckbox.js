@@ -1,13 +1,13 @@
 function FilterCheckbox() {
 
     return (
-        <div className="filterCheckbox">
-          <label className="checkbox_wrap">
-            <input type="checkbox" name="checkbox" className="checkbox_inp" />
-            <span className="checkbox_mark" />
-          </label>
-          <p className="filterCheckbox__title">Короткометражки</p>
-        </div>
+      <div class="filterCheckbox">
+        <label class="filterCheckbox__wrap">
+          <input type="checkbox" name="checkbox" class="input" />
+          <span class="filterCheckbox__mark" />
+        </label>
+          <p class="filterCheckbox__title">Короткометражки</p>
+      </div>
     );
   }
   
