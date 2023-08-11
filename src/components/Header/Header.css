@@ -18,7 +18,7 @@
     justify-content: flex-end
 }
 
-.header__auth-button{
+.header__auth{
     background-color: rgb(61, 220, 132);
     width: 76px;
     height: 32px;
@@ -33,11 +33,11 @@
     list-style-type:none;
 }
 
-.header__auth-button:hover{
+.header__auth:hover{
   opacity: .8;
 }
 
-.header__registration-button{
+.header__registration{
     list-style-type:none;
     background: none;
     border-radius: 3%;
@@ -129,7 +129,7 @@
       .header__registration-link{
       font-size: 10px;
       }
-      .header__auth-button{
+      .header__auth{
         width: 54px;
         height: 26px;
     }
