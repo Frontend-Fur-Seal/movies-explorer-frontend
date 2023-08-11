@@ -4,6 +4,15 @@
     justify-self: center;
 }
 
+.navigation__films-link{
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+ 
+}
+
 @media screen and (max-width: 768px) {
     .navigation {
       display: none;

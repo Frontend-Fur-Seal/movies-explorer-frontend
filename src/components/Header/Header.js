@@ -8,7 +8,7 @@ import HeaderLogo from "../HeaderLogo/HeaderLogo";
 
 function Header() {
 
-  const isAuth = true;
+  const isAuth = false;
 
   const [toggle, setToggle] = useState(false)
 
@@ -20,7 +20,7 @@ function Header() {
         : ''
         }
         {isAuth
-        ? <UserGreeting variable={'header__account-button'}i />
+        ? <UserGreeting variable={'header__account-link'} />
         : <GuestGreeting />
         }
         {isAuth &&

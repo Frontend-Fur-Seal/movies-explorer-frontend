@@ -3,7 +3,7 @@
     max-width: 1140px;
 }
 
-.aboutProject_texts{
+.aboutProject__texts{
     display: grid;
     grid-template-areas:                        
     "subtitleStages subtitleWeeks"            
@@ -31,7 +31,7 @@
     letter-spacing: -1px;
 }
 
-.aboutProject__subtitle_stages, .aboutProject__subtitle_weeks{
+.aboutProject__subtitleStages, .aboutProject__subtitleWeeks{
     margin: 0;
     padding: 0;
     font-size: 20px;
@@ -40,30 +40,30 @@
     line-height: 24px;
 }
 
-.aboutProject__subtitle_stages{
+.aboutProject__subtitleStages{
     grid-area: subtitleStages;
 }
 
-.aboutProject__subtitle_weeks{
+.aboutProject__subtitleWeeks{
     grid-area: subtitleWeeks;
 }
 
-.aboutProject__text_stages, .aboutProject__text_weeks{
+.aboutProject__textStages, .aboutProject__textWeeks{
     margin: 0;
     padding: 0;
     font-size: 14px;
     line-height: 20px;
 }
 
-.aboutProject__text_stages{
+.aboutProject__textStages{
     grid-area: textStages;
 }
 
-.aboutProject__text_weeks{
+.aboutProject__textWeeks{
     grid-area: textWeeks;
 }
 
-.aboutProject__backend_weeks, .aboutProject__frontend_weeks{
+.aboutProject__backendWeeks, .aboutProject__frontendWeeks{
     font-size: 14px;
     font-weight: 400;
     height: 36px;
@@ -74,13 +74,13 @@
     justify-content: center;
 }
 
-.aboutProject__backend_weeks{
+.aboutProject__backendWeeks{
     grid-area: backendWeeks;
     color: #000;
     background-color: #3DDC84;
 }
 
-.aboutProject__frontend_weeks{
+.aboutProject__frontendWeeks{
     grid-area: frontendWeeks;
     color: #fff;
     background-color: #303030;
@@ -117,15 +117,15 @@
     margin: 0 50px 90px;
       
     }
-.aboutProject_texts{
+.aboutProject__texts{
     row-gap: 24px;
     column-gap: 30px;
 
   }
-  .aboutProject__backend_weeks, .aboutProject__frontend_weeks{
+  .aboutProject__backendWeeks, .aboutProject__frontendWeeks{
     margin: 93px 0 0;
   }
-  .aboutProject__text_stages, .aboutProject__text_weeks{
+  .aboutProject__textStages, .aboutProject__textWeeks{
     font-size: 12px;
     line-height: 18px;
   }
@@ -146,7 +146,7 @@
         margin: 0 0 62px;
         letter-spacing: -0.8px;
     }
-    .aboutProject_texts{
+    .aboutProject__texts{
         display: grid;
         grid-template-areas:                        
         "subtitleStages"            
@@ -157,12 +157,12 @@
         row-gap: 16px;
         grid-template-rows: repeat(2, max-content) 27px repeat(2, max-content);
     }
-    .aboutProject__subtitle_stages, .aboutProject__subtitle_weeks{
+    .aboutProject__subtitleStages, .aboutProject__subtitleWeeks{
         font-size: 18px;
         letter-spacing: -0.7px;
         line-height: 21px;
     }
-    .aboutProject__text_stages, .aboutProject__text_weeks{
+    .aboutProject__textStages, .aboutProject__textWeeks{
         font-size: 11px;
         line-height: 16px;
     }
@@ -172,7 +172,7 @@
         "backend frontend frontend";
         grid-template-columns: repeat(3, 1fr);
        }
-   .aboutProject__backend_weeks, .aboutProject__frontend_weeks{
+   .aboutProject__backendWeeks, .aboutProject__frontendWeeks{
         font-size: 11px;
         height: 35px;
         margin: 60px 0 0;

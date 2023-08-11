@@ -30,6 +30,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    list-style-type:none;
 }
 
 .header__auth-button:hover{
@@ -37,6 +38,7 @@
 }
 
 .header__registration-button{
+    list-style-type:none;
     background: none;
     border-radius: 3%;
     border: none;
@@ -44,10 +46,6 @@
     padding: 0;
     height: max-content;
     width: max-content;
-}
-
-.header__registration-button:hover{
-  opacity: .8;
 }
 
 .header__auth-link{
@@ -65,16 +63,7 @@
     font-weight: 500;
 }
 
-.header__films-link{
-    text-decoration: none;
-    color: #fff;
-    font-size: 13px;
-    line-height: 18px;
-    font-weight: 400;
-   
-}
-
-.header__account-button, .header__account-button_sideBar{
+.header__account-link, .header__account-link_sideBar{
     background-color: #313131;
     width: 100px;
     height: 32px;
@@ -82,14 +71,14 @@
     border: none;
     justify-self: end;
     padding: 0;
-}
-
-.header__account-link{
     text-decoration: none;
     color: #fff;
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header__icon {
@@ -160,7 +149,7 @@
   
 
   @media screen and (max-width: 768px) {
-    .header__account-button {
+    .header__account-link {
       display: none;
     }
     .header__icon, .header__icon_opened {
