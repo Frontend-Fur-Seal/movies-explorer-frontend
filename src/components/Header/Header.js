@@ -8,7 +8,7 @@ import HeaderLogo from "../HeaderLogo/HeaderLogo";
 
 function Header() {
 
-  const isAuth = false;
+  const isAuth = true;
 
   const [toggle, setToggle] = useState(false)
 

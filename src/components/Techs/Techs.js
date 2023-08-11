@@ -1,7 +1,7 @@
 function Techs() {
 
     return (
-        <div className="wrapper">
+        <section className="wrapper-techs">
           <div className="techs" id="technology">
           <h3 className="title title_tech">Технологии</h3>
             <h2 className="techs__title">7 технологий</h2>
@@ -16,7 +16,7 @@ function Techs() {
             <li className="techs__stack">mongoDB</li>
           </ul>
           </div>
-      </div>
+      </section>
     );
   }
   

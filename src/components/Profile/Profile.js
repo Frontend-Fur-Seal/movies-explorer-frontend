@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Profile() {
 
     return (
@@ -14,8 +16,8 @@ function Profile() {
           </div>
         </div>
         <div className="profile__edit">
-          <button className="profile__change">Редактировать</button>
-          <button className="profile__signOut">Выйти из аккаунта</button>
+          <button type="button" className="profile__change">Редактировать</button>
+          <Link to="/" className="profile__signOut">Выйти из аккаунта</Link>
         </div>
       </div>
     );
