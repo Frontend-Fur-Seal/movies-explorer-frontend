@@ -26,14 +26,14 @@ const cards = [
 function MoviesCardList() {
  
     return (
-        <section className="moviesCardList">
+        <ul className="moviesCardList">
         {cards.map((card) => (
           <MoviesCard
             key={card._id}
             card={card}
           />
         ))}
-      </section>
+      </ul>
     );
   }
   

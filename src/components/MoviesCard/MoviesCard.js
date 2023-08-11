@@ -4,7 +4,7 @@ function MoviesCard(props) {
   const isSaved = movieSaveState ? '' : 'Сохранить';
   
   return (
-    <article className="moviesCard">
+    <li className="moviesCard">
       <div className="moviesCard__img">
         <img
           className="moviesCard__element"
@@ -17,7 +17,7 @@ function MoviesCard(props) {
         <h2 className="moviesCard__name">{props.card.name}</h2>
         <p className="moviesCard__duration">{props.card.duration}</p>
       </div>
-    </article>
+    </li>
   );
 }
 

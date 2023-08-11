@@ -24,6 +24,10 @@
     justify-content: space-between;
 }
 
+.footer__links li{
+    list-style-type:none
+}
+
 .footer__link{
     text-decoration: none;
     color: #fff;

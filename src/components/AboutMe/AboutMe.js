@@ -4,9 +4,9 @@ function AboutMe() {
 
     return (
         <section className="aboutMe" id="student">
-          <h3 className="title">Студент</h3>
+          <h2 className="title">Студент</h2>
           <div className="aboutMe__info">
-            <h2 className="aboutMe__title">Владимир</h2>
+            <h3 className="aboutMe__title">Владимир</h3>
             <p className="aboutMe__subtitle">Фронтенд-разработчик, 33 года</p>
             <p className="aboutMe__text">Я родился и живу в Москве, закончил факультет экономики СГУ. У меня есть жена 
             и дочь. Я люблю слушать музыку, а ещё увлекаюсь мотокроссом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
