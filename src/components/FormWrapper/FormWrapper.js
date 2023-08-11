@@ -7,20 +7,21 @@ function FormWrapper({
     submit,
     text,
     link,
-    changeLink
+    changeLink,
+    formTypeSubmit
 }) {
 
     return (
-      <div className="formWrapper">
+      <section className="formWrapper">
         <HeaderLogo />
-        <h1 className="title__form">{title}</h1>
+        <h2 className="form__title">{title}</h2>
         {children}
-        <button type="submit" className="submit__form">{submit}</button>
+        <button type="submit" className={formTypeSubmit}>{submit}</button>
         <div className="form__change">
           <p className="form__change-text">{text}</p>
           <Link to={link} className="form__change-link">{changeLink}</Link>
         </div>
-      </div>
+      </section>
     );
   }
   

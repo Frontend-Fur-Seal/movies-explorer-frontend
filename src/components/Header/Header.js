@@ -6,9 +6,9 @@ import SideBar from "../SideBar/SideBar.js";
 import Navigation from '../Navigation/Navigation.js'
 import HeaderLogo from "../HeaderLogo/HeaderLogo";
 
-function Header(props) {
+function Header() {
 
-  const isAuth = true;
+  const isAuth = false;
 
   const [toggle, setToggle] = useState(false)
 
