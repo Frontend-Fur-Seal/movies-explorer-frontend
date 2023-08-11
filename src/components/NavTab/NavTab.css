@@ -26,7 +26,7 @@
     opacity: .8;
 }
 
-.navTab__link_id{
+.navTab__link-id{
     text-decoration: none;
     color: #fff;
     font-size: 12px;
@@ -42,7 +42,7 @@
         height: 24px;
         border-radius: 6px;
     }
-    .navTab__link_id{
+    .navTab__link-id{
         font-size: 10px;
     }
   }

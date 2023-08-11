@@ -4,7 +4,7 @@
     justify-content: center;
 }
 
-.loadMoreMovieButton{
+.loadMoreMovie__button{
     width: 320px;
     height: 36px;
     border-radius: 10px;
@@ -25,7 +25,7 @@
   }
 
   @media screen and (max-width: 600px) {
-    .loadMoreMovieButton{
+    .loadMoreMovie__button{
         width: 240px;
     }
     .loadMoreMovie{

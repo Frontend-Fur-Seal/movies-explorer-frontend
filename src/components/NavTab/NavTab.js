@@ -7,7 +7,7 @@ function NavTab() {
       <ul className="navTab__links">
         <li className="navTab__link">
           <Link
-          className="navTab__link_id"
+          className="navTab__link-id"
           to="aboutProject"
           smooth={true}
           offset={-70}
@@ -16,7 +16,7 @@ function NavTab() {
         </li>
         <li className="navTab__link">
           <Link
-          className="navTab__link_id"
+          className="navTab__link-id"
           to="technology"
           spy={true}
           smooth={true}
@@ -26,7 +26,7 @@ function NavTab() {
         </li>
         <li className="navTab__link">
           <Link
-          className="navTab__link_id"
+          className="navTab__link-id"
           to="student"
           spy={true}
           smooth={true}

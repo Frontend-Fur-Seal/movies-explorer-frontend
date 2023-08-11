@@ -25,6 +25,7 @@ function Header() {
         }
         {isAuth &&
         <button 
+        type="button"
         className={`header__icon ${toggle  ? "header__icon_opened" : ""}`} 
         onClick={() => setToggle(!toggle)} >
         </button>
