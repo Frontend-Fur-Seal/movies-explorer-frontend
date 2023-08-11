@@ -1,9 +1,9 @@
-import FormWrapper from "../FormWrapper/FormWrapper.js";
+import Form from "../Form/Form.js";
 
 function Register() {
 
     return (
-      <FormWrapper
+      <Form
       title={'Добро пожаловать!'}
       submit={'Зарегистрироваться'}
       text={'Уже зарегистрированы?'}
@@ -12,35 +12,35 @@ function Register() {
       formTypeSubmit={'form__submit-register'}
       >
         <form className="register">
-        <label for="registerInput-name" className="input__label">Имя</label>
+        <label htmlFor="registerInput-name" className="form__label">Имя</label>
           <input 
           id="registerInput-name"
-          required=""
+          required={true}
           minLength={2}
           maxLength={20}
           type="text" 
-          className="input" />
-          <p className="input__error"></p>
-          <label for="registerInput-email" className="input__label">E-mail</label>
+          className="form__input" />
+          <p className="form__error"></p>
+          <label htmlFor="registerInput-email" className="form__label">E-mail</label>
           <input 
           id="registerInput-email"
-          required=""
+          required={true}
           minLength={2}
           maxLength={30}
           type="email" 
-          className="input" />
-          <p className="input__error"></p>
-          <label for="registerInput-password" className="input__label">Пароль</label>
+          className="form__input" />
+          <p className="form__error"></p>
+          <label htmlFor="registerInput-password" className="form__label">Пароль</label>
           <input 
           id="registerInput-password"
-          required=""
+          required={true}
           minLength={2}
           maxLength={20}
           type="password" 
-          className="input" />
-          <p className="input__error"></p>
+          className="form__input" />
+          <p className="form__error"></p>
         </form>
-      </FormWrapper>
+      </Form>
     );
   }
   

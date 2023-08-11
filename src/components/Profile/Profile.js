@@ -1,24 +1,51 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Profile() {
 
+  const [disableInput, setDisableInput] = useState(true);
+
+  function editUser(e){
+    e.preventDefault();
+    setDisableInput(!disableInput);
+  }
+
     return (
       <div className="profile">
         <h1 className="profile__title">Привет, Владимир</h1>
-        <div className="profile__info">
-          <div className="profile__name">
-            <p className="profile__name_title">Имя</p>
-            <p className="profile__name_user">Владимир</p>
+        <form className="profile__form">
+          <div className="profile__inputs">
+            <div className="profile__name">
+              <label htmlFor="inputChange-name" className="profile__label">Имя</label>
+              <input 
+              value={'Владимир'}
+              id="inputChange-name"
+              required={true}
+              minLength={2}
+              maxLength={20}
+              type="text" 
+              className="profile__input"
+              disabled={disableInput} />
+            </div>
+            <div className="profile__email">
+              <label htmlFor="inputChange-email" className="profile__label">Email</label>
+              <input 
+              value={'test@test.ru'}
+              id="inputChange-email"
+              required={true}
+              minLength={2}
+              maxLength={20}
+              type="email" 
+              className="profile__input"
+              disabled={disableInput} />
+            </div>
           </div>
-          <div className="profile__email">
-            <p className="profile__email_title">Email</p>
-            <p className="profile__email_user">test@test.ru</p>
-          </div>
-        </div>
-        <div className="profile__edit">
-          <button type="button" className="profile__change">Редактировать</button>
+          {disableInput 
+          ? <button type="button" className="profile__change" onClick={editUser}>Редактировать</button>
+          : <button type="submit" className="profile__change" onClick={editUser}>Сохранить</button>
+        }
+        </form>
           <Link to="/" className="profile__signOut">Выйти из аккаунта</Link>
-        </div>
       </div>
     );
   }

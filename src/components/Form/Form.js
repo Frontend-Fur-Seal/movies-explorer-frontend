@@ -12,7 +12,7 @@ function FormWrapper({
 }) {
 
     return (
-      <section className="formWrapper">
+      <section className="form">
         <HeaderLogo />
         <h2 className="form__title">{title}</h2>
         {children}

@@ -21,12 +21,12 @@
     letter-spacing: 0px
 }
 
-.filterCheckbox .checkbox_wrap{
+.filterCheckbox__wrap{
 	position: relative;
 	cursor: pointer;
 }
 
-.filterCheckbox .checkbox_wrap .checkbox_inp{
+.filterCheckbox__input{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -34,26 +34,23 @@
 	z-index: 1;
 }
 
-.filterCheckbox .checkbox_wrap .checkbox_mark{
+.filterCheckbox__mark{
 	display: inline-block;
 	position: relative;
 	border-radius: 20px;
-}
-
-.filterCheckbox .checkbox_wrap .checkbox_mark:before,
-.filterCheckbox .checkbox_wrap .checkbox_mark:after{
-	content: "";
-	position: absolute;
-	transition: all 0.5s ease;
-}
-
-.filterCheckbox .checkbox_wrap .checkbox_mark{
 	background: #848383;
 	width: 36px;
 	height: 14px;
 }
 
-.filterCheckbox .checkbox_wrap .checkbox_mark:before{
+.filterCheckbox__mark:before,
+.filterCheckbox__mark:after{
+	content: "";
+	position: absolute;
+	transition: all 0.5s ease;
+}
+
+.filterCheckbox__mark:before{
 	top: 2px;
 	left: 2px;
 	width: 10px;
@@ -62,11 +59,11 @@
 	border-radius: 50%;
 }
 
-.filterCheckbox .checkbox_wrap .checkbox_inp:checked ~ .checkbox_mark{
+.filterCheckbox__input:checked ~ .filterCheckbox__mark{
 	background: #3DDC84;
 }
 
-.filterCheckbox .checkbox_wrap .checkbox_inp:checked ~ .checkbox_mark:before{
+.filterCheckbox__input:checked ~ .filterCheckbox__mark:before{
 	left: 24px;
 }
 

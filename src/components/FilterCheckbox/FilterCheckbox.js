@@ -3,7 +3,7 @@ function FilterCheckbox() {
     return (
       <div class="filterCheckbox">
         <label class="filterCheckbox__wrap">
-          <input type="checkbox" name="checkbox" class="input" />
+          <input type="checkbox" name="checkbox" class="filterCheckbox__input" />
           <span class="filterCheckbox__mark" />
         </label>
           <p class="filterCheckbox__title">Короткометражки</p>

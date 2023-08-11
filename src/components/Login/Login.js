@@ -1,9 +1,9 @@
-import FormWrapper from "../FormWrapper/FormWrapper.js";
+import Form from "../Form/Form.js";
 
 function Login() {
 
     return (
-      <FormWrapper
+      <Form
       title={'Рады видеть!'}
       submit={'Войти'}
       text={'Еще не зарегистрированы?'}
@@ -12,28 +12,28 @@ function Login() {
       formTypeSubmit={'form__submit-login'}
       >
         <form className="login">
-          <label for="loginInput-email" className="input__label">E-mail</label>
+          <label htmlFor="loginInput-email" className="form__label">E-mail</label>
           <input 
           id="loginInput-email"
-          required=""
+          required={true}
           minLength={2}
           maxLength={30}
           type="email" 
-          className="input"
+          className="form__input"
           />
-          <p className="input__error"></p>
+          <p className="form__error"></p>
 
-          <label for="loginInput-password" className="input__label">Пароль</label>
+          <label htmlFor="loginInput-password" className="form__label">Пароль</label>
           <input 
           id="loginInput-password"
-          required=""
+          required={true}
           minLength={2}
           maxLength={20}
           type="password" 
-          className="input" />
-          <p className="input__error"></p>
+          className="form__input" />
+          <p className="form__error"></p>
         </form>
-      </FormWrapper>
+      </Form>
     );
   }
   

@@ -1,4 +1,4 @@
-.formWrapper{
+.form{
     min-width: 396px;
     margin: 68px auto;
 }
@@ -51,7 +51,7 @@
     cursor: pointer;
 }
 
-.input__label{
+.form__label{
     font-size: 10px;
     font-weight: 400;
     margin: 0;
@@ -60,14 +60,14 @@
     color: #8B8B8B;
 }
 
-.input__error{
+.form__error{
     height: 10px;
     margin: 0;
     color: #EE3465;
     font-size: 10px;
 }
 
-.input{
+.form__input{
     border: none;
     border-radius: 8px;
     height: 46px;
@@ -90,16 +90,16 @@
 
 
 @media screen and (max-width: 980px) {
-    .formWrapper{
+    .form{
         min-width: 396px;
         margin: 230px auto;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .formWrapper{
+    .form{
         min-width: 260px;
-        margin: 55px auto;
+        margin: 55px auto 30px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -107,7 +107,7 @@
     .form__title{
         margin: 50px auto 84px;
     }
-    .input{
+    .form__input{
         width: 260px;
     }
     .form__submit-register, .form__submit-login{
