@@ -95,3 +95,36 @@
         margin: 230px auto;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .formWrapper{
+        min-width: 260px;
+        margin: 55px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .form__title{
+        margin: 50px auto 84px;
+    }
+    .input{
+        width: 260px;
+    }
+    .form__submit-register, .form__submit-login{
+        width: 260px;
+        font-size: 12px;
+    }
+    .form__submit-register{
+        margin: 159px auto 14px;
+    }
+    .form__submit-login{
+        margin: 247px auto 14px;
+    }
+    .form__change-text{
+        font-size: 12px;
+    }
+    
+    .form__change-link{
+        font-size: 12px;
+    }
+}
