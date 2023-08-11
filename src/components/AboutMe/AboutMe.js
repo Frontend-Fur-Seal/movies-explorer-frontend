@@ -1,4 +1,4 @@
-import hoverAvatar from "../../images/avatar.jpg";
+import avatar from "../../images/avatar.jpg";
 
 function AboutMe() {
 
@@ -12,7 +12,7 @@ function AboutMe() {
             и дочь. Я люблю слушать музыку, а ещё увлекаюсь мотокроссом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
           </div>
           <a href="https://github.com/VladimirSherstnev" className="aboutMe__git" rel="noreferrer" target="_blank">Github</a>
-          <img src={hoverAvatar} className="aboutMe__avatar" alt="Аватар" />
+          <img src={avatar} className="aboutMe__avatar" alt="Аватар" />
         </section>
     );
   }

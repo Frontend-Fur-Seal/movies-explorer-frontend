@@ -25,8 +25,6 @@ function Register() {
           <input 
           id="registerInput-email"
           required={true}
-          minLength={2}
-          maxLength={30}
           type="email" 
           className="form__input" />
           <p className="form__error"></p>

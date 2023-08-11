@@ -20,7 +20,6 @@ function Profile() {
               <input 
               value={'Владимир'}
               id="inputChange-name"
-              required={true}
               minLength={2}
               maxLength={20}
               type="text" 
@@ -32,7 +31,6 @@ function Profile() {
               <input 
               value={'test@test.ru'}
               id="inputChange-email"
-              required={true}
               minLength={2}
               maxLength={20}
               type="email" 
