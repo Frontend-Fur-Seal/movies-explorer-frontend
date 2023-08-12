@@ -1,14 +1,15 @@
-import SearchForm from '../SearchForm/SearchForm.js';
-import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
+import SearchForm from "../SearchForm/SearchForm.js";
+import MoviesCardList from "../MoviesCardList/MoviesCardList.js";
 
 function SavedMovies() {
+  return (
+    <main className="main">
+      <div className="movies">
+        <SearchForm />
+        <MoviesCardList />
+      </div>
+    </main>
+  );
+}
 
-    return (
-    <div className='movies'>
-    <SearchForm />
-    <MoviesCardList />
-    </div>
-    );
-  }
-  
-  export default SavedMovies;
+export default SavedMovies;

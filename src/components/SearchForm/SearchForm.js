@@ -1,20 +1,20 @@
-import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.js"
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.js";
 
 function SearchForm() {
-
-    return (
-      <section className="searchMovie">
+  return (
+    <section className="searchMovie">
       <form className="searchForm">
-        <input 
-        required={true}
-        type="text" 
-        className="searchForm__input" 
-        placeholder="Фильм" />
+        <input
+          required={true}
+          type="text"
+          className="searchForm__input"
+          placeholder="Фильм"
+        />
         <button type="submit" className="searchForm__submit"></button>
         <FilterCheckbox />
       </form>
-      </section>
-    );
-  }
-  
-  export default SearchForm;
+    </section>
+  );
+}
+
+export default SearchForm;
