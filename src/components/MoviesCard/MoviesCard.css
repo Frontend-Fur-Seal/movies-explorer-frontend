@@ -76,6 +76,15 @@ list-style-type:none;
   cursor: pointer;
 }
 
+.moviesCard__saveMovie:hover{
+    background-color: #fff;
+    color: #313131;
+}
+
+.moviesCard__saveMovie_saved:hover{
+    background-color: #530318;
+}
+
 @media screen and (max-width: 980px) {
     .moviesCard__name{
       max-width: 250px;
