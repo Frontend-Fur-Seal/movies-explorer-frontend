@@ -10,6 +10,8 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage.js';
 import Register from '../Register/Register.js';
 import Login from '../Login/Login.js';
 
+import Preloader from '../Preloader/Preloader.js';
+
 function App () {
 
   let location = useLocation();
@@ -41,7 +43,7 @@ function App () {
         <Header />
       }
         <Routes>
-          <Route path="/signup" element={<Register />} />
+          <Route path="/signup" element={<Preloader />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/" element={<Main />} />
           <Route path="/movies" element={<Movies />} />
