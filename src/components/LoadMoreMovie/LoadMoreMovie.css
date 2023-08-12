@@ -18,6 +18,10 @@
     cursor: pointer;
 }
 
+.loadMoreMovie__button:hover{
+    background-color: #424242;
+}
+
 @media screen and (max-width: 980px) {
     .loadMoreMovie{
         margin: 60px auto 76px;

@@ -8,7 +8,6 @@
     "title title"
     "text img"
     "git img";
-
 }
 
 .aboutMe__avatar{
@@ -59,6 +58,10 @@
     text-decoration: none;
     color: #fff;
     align-self: end;
+}
+
+.aboutMe__git:hover{
+    color: #d3d0d0;
 }
 
 @media screen and (min-width: 1281px) {

@@ -53,6 +53,10 @@ top: -3px;
   letter-spacing: -1.2px;
 }
 
+.portfolio__link:hover{
+    color: #d3d0d0;
+}
+
 @media screen and (min-width: 1281px) {
     .portfolio{
       margin: 0 auto 106px;

@@ -105,6 +105,10 @@
     z-index: 10;
   }
 
+  .header__account-link:hover, .header__account-link_sideBar:hover{
+    box-shadow: 2px 2px 10px 0px rgba(232, 237, 237, 0.2);
+}
+
   
   @media screen and (min-width: 1281px) {
     .header{

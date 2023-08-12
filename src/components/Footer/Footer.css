@@ -42,6 +42,10 @@
     margin: 0;
 }
 
+.footer__link:hover{
+    color: #d3d0d0;
+}
+
 @media screen and (min-width: 1281px) {
     .footer{
       margin: 0 auto;

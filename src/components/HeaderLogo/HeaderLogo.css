@@ -6,6 +6,11 @@
 .headerLogoImg{
     width: 38px;
     height: 38px;
+    border-radius: 50%;
+}
+
+.headerLogoImg:hover{
+    box-shadow: 2px 2px 20px 0px rgba(181, 183, 184, 0.2);
 }
 
 @media screen and (max-width: 768px) {
