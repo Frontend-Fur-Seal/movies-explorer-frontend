@@ -27,6 +27,7 @@ function Profile() {
                 type="text"
                 className="profile__input"
                 disabled={disableInput}
+                ref={input => input && input.focus()}
               />
             </div>
             <div className="profile__email">
