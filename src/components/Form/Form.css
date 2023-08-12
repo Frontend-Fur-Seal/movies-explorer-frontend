@@ -80,7 +80,7 @@
     margin-bottom: 10px;
 }
 
-.form__submit-register, .form__submit-login:hover{
+.form__submit-register:hover, .form__submit-login:hover{
     box-shadow: 2px 2px 20px 0px rgba(181, 183, 184, 0.2);
 }
 
