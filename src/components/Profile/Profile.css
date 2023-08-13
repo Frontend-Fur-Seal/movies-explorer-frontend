@@ -75,6 +75,14 @@
     text-align: center;
 }
 
+.profile__change:hover{
+    opacity: .5;
+}
+
+.profile__signOut:hover{
+    opacity: .5;
+}
+
 .profile__input:focus{
     outline:none;
     border-bottom: 1px solid #fff;
