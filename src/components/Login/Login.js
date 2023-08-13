@@ -16,6 +16,7 @@ function Login() {
             E-mail
           </label>
           <input
+            placeholder="E-mail"
             id="loginInput-email"
             required={true}
             minLength={2}
@@ -29,6 +30,7 @@ function Login() {
             Пароль
           </label>
           <input
+            placeholder="Пароль"
             id="loginInput-password"
             required={true}
             minLength={2}

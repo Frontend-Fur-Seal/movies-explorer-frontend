@@ -16,6 +16,7 @@ function Register() {
             Имя
           </label>
           <input
+            placeholder="Имя"
             id="registerInput-name"
             required={true}
             minLength={2}
@@ -28,6 +29,7 @@ function Register() {
             E-mail
           </label>
           <input
+            placeholder="E-mail"
             id="registerInput-email"
             required={true}
             type="email"
@@ -38,6 +40,7 @@ function Register() {
             Пароль
           </label>
           <input
+            placeholder="Пароль"
             id="registerInput-password"
             required={true}
             minLength={2}

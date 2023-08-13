@@ -46,6 +46,10 @@
     box-shadow: 0 0 4px 1px #fff;
 }
 
+.searchForm__submit:hover{
+    box-shadow: 0 0 4px 1px #fff;   
+}
+
 @media screen and (min-width: 1281px) {
     .searchForm{
         margin: 80px auto 29px;
@@ -55,12 +59,14 @@
 @media screen and (max-width: 980px) {
     .searchForm{
         margin: 80px 30px 41px;
+        grid-template-rows: 50px 100px;
     }
   }
 
   @media screen and (max-width: 600px) {
     .searchForm{
-        margin: 80px 14px 41px;
+        margin: 75px 14px 41px;
+        grid-template-rows: 50px 105px;
     }
     .searchForm__input{
         height: 44px;

@@ -32,6 +32,10 @@
   font-size: 14px;
 }
 
+.notFoundPage__hover{
+    opacity: .5;
+  }
+
 @media screen and (max-width: 980px) {
     .notFoundPage{
         padding: 410px 0 0;

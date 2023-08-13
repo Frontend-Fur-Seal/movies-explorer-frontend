@@ -14,7 +14,7 @@ function FormWrapper({
     return (
       <section className="form">
         <HeaderLogo />
-        <h2 className="form__title">{title}</h2>
+        <h1 className="form__title">{title}</h1>
         {children}
         <button type="submit" className={formTypeSubmit}>{submit}</button>
         <div className="form__change">

@@ -20,6 +20,7 @@ function Profile() {
                 Имя
               </label>
               <input
+                placeholder="Имя"
                 value={"Владимир"}
                 id="inputChange-name"
                 minLength={2}
@@ -35,6 +36,7 @@ function Profile() {
                 Email
               </label>
               <input
+                placeholder="Email"
                 value={"test@test.ru"}
                 id="inputChange-email"
                 minLength={2}

@@ -5,7 +5,7 @@
 }
 
 .footer__title{
-    padding: 103px 0 20px;
+    padding: 92px 0 20px;
     border-bottom: 1px solid #424242;
     margin: 0;
     text-align: center;
@@ -42,6 +42,12 @@
     margin: 0;
 }
 
+.footer__info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .footer__link:hover{
     color: #d3d0d0;
 }
@@ -64,7 +70,10 @@
 
 @media screen and (max-width: 600px) {
     .footer{
-        margin: 0 10px;
+        margin: 0 10px 20px;
+    }
+    .footer__info{
+        flex-direction: column;
     }
     .footer__title{
         padding: 79px 0 21px;
@@ -74,13 +83,12 @@
     .footer__links{
         display: flex;
         flex-direction: column;
-        padding-top: 31px;
-        gap: 14px;
+        padding-top: 27px;
+        padding-bottom: 30px;
+        gap: 9px;
     }
       .footer__year{
         margin: 0;
-        padding-top: 17px;
-        box-sizing: border-box;
         font-size: 12px;
         order: 1;
     }

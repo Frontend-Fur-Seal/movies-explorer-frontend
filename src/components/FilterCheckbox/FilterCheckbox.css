@@ -72,6 +72,12 @@
 	box-shadow: 2px 2px 10px 0px rgba(232, 237, 237, 0.2);
 }
 
+@media screen and (max-width: 980px) {
+    .filterCheckbox{
+        margin: 41px auto 40px;
+    }    
+  }
+
 @media screen and (max-width: 600px) {
     .filterCheckbox__title{
         letter-spacing: -0.6px;
