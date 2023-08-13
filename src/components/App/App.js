@@ -6,6 +6,7 @@ import SavedMovies from '../SavedMovies/SavedMovies.js'
 import Footer from '../Footer/Footer.js'
 import Header from '../Header/Header.js';
 import Profile from '../Profile/Profile.js'
+import NotFoundPage from '../NotFoundPage/NotFoundPage.js';
 import Register from '../Register/Register.js';
 import Login from '../Login/Login.js';
 
