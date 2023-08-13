@@ -36,7 +36,7 @@
     font-weight: 500;
     text-decoration: none;
     color: #fff;
-    border-bottom: 1px solid transparent;
+    border-bottom: 2px solid transparent;
     padding-bottom: 4px;
   }
 
@@ -58,12 +58,16 @@
     justify-content: center;
   }
 
+  .sideBar__link_active{
+    border-bottom: 2px solid #fff;
+  }
+
   .sideBar__account-link:hover{
     box-shadow: 2px 2px 10px 0px rgba(232, 237, 237, 0.2);
 }
 
   .sideBar__link:hover{
-    border-bottom: 1px solid #fff;
+    border-bottom: 2px solid #fff;
   }
 
   @media screen and (min-width: 769px) {
@@ -78,6 +82,9 @@
       padding: 144px 0 47px;
   }
   .sideBar__links{
-    gap: 21px;
+    gap: 17px;
+  }
+  .sideBar__link{
+    padding-bottom: 7px;
   }
 }
