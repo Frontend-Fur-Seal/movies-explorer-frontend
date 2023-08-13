@@ -1,5 +1,5 @@
 .form{
-    min-width: 396px;
+    max-width: 396px;
     margin: 68px auto;
 }
 
@@ -96,14 +96,14 @@
 
 @media screen and (max-width: 980px) {
     .form{
-        min-width: 396px;
+        max-width: 396px;
         margin: 230px auto;
     }
 }
 
 @media screen and (max-width: 600px) {
     .form{
-        min-width: 260px;
+        max-width: 260px;
         margin: 55px auto 30px;
         display: flex;
         flex-direction: column;

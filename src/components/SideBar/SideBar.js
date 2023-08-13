@@ -10,7 +10,7 @@ function SideBar() {
             <Link to="/movies" className="sideBar__link">Фильмы</Link>
             <Link to="/saved-movies" className="sideBar__link">Сохраненные фильмы</Link>
           </nav>
-          <UserGreeting variable={'header__account-link_sideBar'}/>
+          <UserGreeting variable={'sideBar__account-link'}/>
           </div>
         </section>
     );

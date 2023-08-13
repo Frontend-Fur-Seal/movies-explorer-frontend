@@ -57,8 +57,8 @@ margin: 0;
   align-items: center;
 }
 
-.portfolio__link:hover{
-    color: #d3d0d0;
+.portfolio__work a:hover{
+    opacity: .5;
 }
 
 @media screen and (min-width: 1281px) {
@@ -72,7 +72,7 @@ margin: 0;
     .portfolio{
         margin: 0 50px 90px;
       }
-      .portfolio__link{
+      .portfolio__work-name{
         font-size: 28px;
       }
 }
@@ -86,12 +86,12 @@ margin: 0;
         line-height: 20px;
         margin: 0 0 40px;
     }
-    .portfolio__link{
+    .portfolio__work-name{
         font-size: 18px;
         line-height: 28px;
         letter-spacing: -0.7px;
       }
-    .portfolio__work::after{
+    .portfolio__icon{
         background-image: url(../../images/gitLinkSmall.svg);
         width: 18px;
         height: 28px;
@@ -103,5 +103,8 @@ margin: 0;
             display: flex;
             flex-direction: column;
             gap: 22px;
+        }
+        .portfolio__works li:not(:last-child) {
+            padding-bottom: 18px;
         }
   }

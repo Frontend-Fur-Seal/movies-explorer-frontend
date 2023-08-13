@@ -33,36 +33,6 @@ const cards = [
     link: testImage,
     duration: "1ч 17м",
   },
-  {
-    _id: 1,
-    name: "33 слова о дизайне",
-    link: testImage,
-    duration: "1ч 17м",
-  },
-  {
-    _id: 2,
-    name: "33 слова о дизайне",
-    link: testImage,
-    duration: "1ч 17м",
-  },
-  {
-    _id: 3,
-    name: "33 слова о дизайне",
-    link: testImage,
-    duration: "1ч 17м",
-  },
-  {
-    _id: 1,
-    name: "33 слова о дизайне",
-    link: testImage,
-    duration: "1ч 17м",
-  },
-  {
-    _id: 2,
-    name: "33 слова о дизайне",
-    link: testImage,
-    duration: "1ч 17м",
-  },
   
 ];
 

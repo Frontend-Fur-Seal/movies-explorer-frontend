@@ -1,7 +1,7 @@
 .profile{
     display: flex;
     flex-direction: column;
-    min-width: 410px;
+    max-width: 410px;
     margin: 75px auto;
 }
 
@@ -92,7 +92,7 @@
 
   @media screen and (max-width: 600px) {
     .profile{
-        min-width: 260px;
+        max-width: 260px;
         margin: 70px auto 39px;
   }
   .profile__form{
