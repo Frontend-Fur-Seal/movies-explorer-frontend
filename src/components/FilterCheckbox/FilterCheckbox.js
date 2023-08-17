@@ -1,4 +1,5 @@
-function FilterCheckbox() {
+function FilterCheckbox(props) {
+
   return (
     <div className="filterCheckbox">
       <label className="filterCheckbox__wrap">
