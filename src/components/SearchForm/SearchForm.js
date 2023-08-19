@@ -1,9 +1,17 @@
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function SearchForm(props) {
 
   const [movieRequest, setmovieRequest] = useState("");
+  const [isShort, setIsShort] = React.useState(false);
+
+  useEffect(() => {
+    if (movieRequest) {
+      props.newMovieFind(movieRequest, isShort);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isShort])
 
   function handleChangeMovie(e) {
     setmovieRequest(e.target.value);
@@ -11,22 +19,27 @@ function SearchForm(props) {
 
   function SearchMovies(e){
     e.preventDefault();
-    props.newMovieFind(movieRequest);
+    props.newMovieFind(movieRequest, isShort);
+  }
+
+  function changeMoviesLength(){
+    setIsShort(!isShort)
   }
 
   return (
     <section className="searchMovie">
-      <form className="searchForm">
+      <form className="searchForm" onSubmit={SearchMovies}>
         <input
-          defaultValue={props.inputValue}
           required={true}
+          minLength={2}
+          defaultValue={props.inputValue}
           type="text"
           className="searchForm__input"
           placeholder="Фильм"
           onChange={handleChangeMovie}
         />
-        <button type="submit" className="searchForm__submit" onClick={SearchMovies}></button>
-        <FilterCheckbox />
+        <button type="submit" className="searchForm__submit"></button>
+        <FilterCheckbox changeMoviesLength={changeMoviesLength} isShort={isShort} checkbox={props.checkbox}/>
       </form>
     </section>
   );
