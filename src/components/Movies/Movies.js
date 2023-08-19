@@ -14,55 +14,48 @@ function Movies() {
 
   const [allMovies, setAllMovies] = useState([]);
   const [movies, setMovies] = useState([]);
-  const [checkbox, setCheckbox] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-  //const [error, setError] = useState(false);
 
   useEffect(()=> {
     const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
     if(userSavedSearch.length !== 0){
-      const {filteredList, isShort, value} = userSavedSearch;
+      const {filteredList} = userSavedSearch;
       setMovies(filteredList);
-      setCheckbox(isShort);
-      setInputValue(value);
     }
   },[])
 
-  function SearchMovie(value, isShort) {
-    setCheckbox(isShort);
-    setInputValue(value);
-    allMovies.length === 0 ? SearchMovieApi(value, isShort) : SearchMovieState(value, isShort);
+  function SearchMovie(movieRequest, isShort) {
+    allMovies.length === 0 ? SearchMovieApi(movieRequest, isShort) : SearchMovieState(movieRequest, isShort);
   }
 
-  function SearchMovieApi(value, isShort){
+  function SearchMovieApi(movieRequest, isShort){
     api
       .getMovies()
       .then((data) => {
         setAllMovies(data);
-        addLocalStorage(data, value, isShort)
+        addLocalStorage(data, movieRequest, isShort)
       })
       .catch((error) => console.log(error))
   }
 
-  function SearchMovieState(value, isShort){
+  function SearchMovieState(movieRequest, isShort){
     localStorage.clear();
-    addLocalStorage(allMovies, value, isShort);
+    addLocalStorage(allMovies, movieRequest, isShort);
   }
 
-  function addLocalStorage(data, value, isShort){
-    const filteredList = filterData(data, value, isShort)
+  function addLocalStorage(data, movieRequest, isShort){
+    const filteredList = filterData(data, movieRequest, isShort)
     setMovies(filteredList);
     localStorage.setItem(
       "userMovie",
-      JSON.stringify({ value, filteredList, isShort })
+      JSON.stringify({ movieRequest, filteredList, isShort })
     );
   }
 
-  function filterData(data, value, isShort) {
+  function filterData(data, movieRequest, isShort) {
     const ourList = data.filter(
       (movie) =>
-        checkValue(movie.nameRU, value) ||
-        checkValue(movie.nameEN, value)
+        checkValue(movie.nameRU, movieRequest) ||
+        checkValue(movie.nameEN, movieRequest)
     );
     function checkValue(obj, value) {
       return obj.toLowerCase().indexOf(value.toLowerCase()) !== -1;
@@ -76,7 +69,7 @@ function Movies() {
   return (
     <main className="main">
       <div className="movies">
-        <SearchForm newMovieFind={SearchMovie} checkbox={checkbox} inputValue={inputValue} /> 
+        <SearchForm newMovieFind={SearchMovie} /> 
           <MoviesCardList FilterMovie={movies} />
       </div>
     </main>

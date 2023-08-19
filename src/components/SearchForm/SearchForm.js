@@ -13,6 +13,15 @@ function SearchForm(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShort])
 
+  useEffect(()=> {
+    const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
+    if(userSavedSearch.length !== 0){
+      const {movieRequest, isShort} = userSavedSearch;
+      setmovieRequest(movieRequest);
+      setIsShort(isShort)
+    }
+  },[])
+
   function handleChangeMovie(e) {
     setmovieRequest(e.target.value);
   }
@@ -32,14 +41,14 @@ function SearchForm(props) {
         <input
           required={true}
           minLength={2}
-          defaultValue={props.inputValue}
+          value={movieRequest}
           type="text"
           className="searchForm__input"
           placeholder="Фильм"
           onChange={handleChangeMovie}
         />
         <button type="submit" className="searchForm__submit"></button>
-        <FilterCheckbox changeMoviesLength={changeMoviesLength} isShort={isShort} checkbox={props.checkbox}/>
+        <FilterCheckbox changeMoviesLength={changeMoviesLength} isShort={isShort}/>
       </form>
     </section>
   );

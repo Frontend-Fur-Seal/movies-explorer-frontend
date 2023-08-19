@@ -6,7 +6,7 @@ function FilterCheckbox(props) {
         <input
           type="checkbox"
           name="checkbox"
-          className={`filterCheckbox__input ${props.checkbox ? 'filterCheckbox__input_short' : ''}`}
+          className={`filterCheckbox__input ${props.isShort ? 'filterCheckbox__input_short' : ''}`}
           onClick={props.changeMoviesLength}
         />
         <span className="filterCheckbox__mark" />
