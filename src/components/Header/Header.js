@@ -6,21 +6,20 @@ import SideBar from "../SideBar/SideBar.js";
 import Navigation from "../Navigation/Navigation.js";
 import HeaderLogo from "../HeaderLogo/HeaderLogo";
 
-function Header() {
-  const isAuth = true;
+function Header(props) {
 
   const [toggle, setToggle] = useState(false);
 
   return (
     <header className="header">
       <HeaderLogo />
-      {isAuth ? <Navigation /> : ""}
-      {isAuth ? (
+      {props.loggedIn ? <Navigation /> : ""}
+      {props.loggedIn ? (
         <UserGreeting variable={"header__account-link"} />
       ) : (
         <GuestGreeting />
       )}
-      {isAuth && (
+      {props.loggedIn && (
         <button
           type="button"
           className={`header__icon ${toggle ? "header__icon_opened" : ""}`}
