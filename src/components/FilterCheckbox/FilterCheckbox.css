@@ -67,6 +67,10 @@
 	left: 24px;
 }
 
+.filterCheckbox__input_short ~ .filterCheckbox__mark:hover{
+	background: #93e6b9;
+}
+
 .filterCheckbox__mark:hover{
 	background: #9b9a9a;
 	box-shadow: 2px 2px 10px 0px rgba(232, 237, 237, 0.2);

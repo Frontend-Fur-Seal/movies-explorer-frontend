@@ -40,7 +40,7 @@ function SearchForm(props) {
       <form className="searchForm" onSubmit={SearchMovies}>
         <input
           required={true}
-          minLength={2}
+          minLength={1}
           value={movieRequest}
           type="text"
           className="searchForm__input"

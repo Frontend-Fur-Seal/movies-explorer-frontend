@@ -1,11 +1,12 @@
 .moviesCard{
-max-width: 360px;
+min-width: 100%;
 list-style-type:none;
 }
 
 .moviesCard__img{
     position: relative;
     max-width: 360px;
+    margin: 0 auto;
 }
 
 .moviesCard__element{
@@ -96,9 +97,11 @@ list-style-type:none;
       white-space: nowrap 
     }
     .moviesCard__info{
-        margin: 0;
         max-width: 339px;
         padding-top: 22px;
+      }
+      .moviesCard__element{
+        height: 190px;
       }
   }
 
@@ -112,6 +115,7 @@ list-style-type:none;
         right: 9px;
     }
     .moviesCard__name{
+        max-width: 240px;
         font-size: 12px;
     }
     .moviesCard__info{

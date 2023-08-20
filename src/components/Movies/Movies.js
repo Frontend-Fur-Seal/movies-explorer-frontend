@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
+
 import SearchForm from "../SearchForm/SearchForm.js";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.js";
 import MoviesApi from "../../utils/MoviesApi";
-
-import { useEffect, useState } from "react";
+import filterData from "../../utils/FilterMovie.js";
 
 function Movies() {
   const api = new MoviesApi({
@@ -49,21 +50,6 @@ function Movies() {
       "userMovie",
       JSON.stringify({ movieRequest, filteredList, isShort })
     );
-  }
-
-  function filterData(data, movieRequest, isShort) {
-    const ourList = data.filter(
-      (movie) =>
-        checkValue(movie.nameRU, movieRequest) ||
-        checkValue(movie.nameEN, movieRequest)
-    );
-    function checkValue(obj, value) {
-      return obj.toLowerCase().indexOf(value.toLowerCase()) !== -1;
-    }
-    if (isShort) {
-      return ourList.filter((movie) => movie.duration < 40);
-    } 
-    return ourList;
   }
 
   return (
