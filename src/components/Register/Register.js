@@ -1,17 +1,38 @@
+import { useState } from "react";
 import Form from "../Form/Form.js";
 
-function Register() {
+function Register( {handleRegister} ) {
+
+  const [formValue, setFormValue] = useState({
+    name: '',
+    email: '',
+    password: ''
+  })
+  
+const handleChange = (e) => {
+  const {name, value} = e.target;
+
+  setFormValue({
+    ...formValue,
+    [name]: value
+  });
+}
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    handleRegister(formValue.name, formValue.email, formValue.password)
+}
+
+console.log(formValue)
   return (
     <main className="main">
       <Form
         title={"Добро пожаловать!"}
-        submit={"Зарегистрироваться"}
         text={"Уже зарегистрированы?"}
         changeLink={"Войти"}
         link={"/signin"}
-        formTypeSubmit={"form__submit-register"}
       >
-        <form className="register">
+        <form className="register" onSubmit={handleSubmit}>
           <label htmlFor="registerInput-name" className="form__label">
             Имя
           </label>
@@ -23,6 +44,9 @@ function Register() {
             maxLength={20}
             type="text"
             className="form__input"
+            onChange={handleChange}
+            value={formValue.name}
+            name="name"
           />
           <p className="form__error"></p>
           <label htmlFor="registerInput-email" className="form__label">
@@ -34,6 +58,10 @@ function Register() {
             required={true}
             type="email"
             className="form__input"
+            onChange={handleChange}
+            value={formValue.email}
+            name="email"
+            autoComplete='on'
           />
           <p className="form__error"></p>
           <label htmlFor="registerInput-password" className="form__label">
@@ -47,8 +75,12 @@ function Register() {
             maxLength={20}
             type="password"
             className="form__input"
+            onChange={handleChange}
+            value={formValue.password}
+            name="password"
           />
           <p className="form__error"></p>
+          <button type="submit" className='form__submit-register'>Зарегистрироваться</button>
         </form>
       </Form>
     </main>

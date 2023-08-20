@@ -77,9 +77,9 @@ function App() {
       });
   };
 
-  const handleRegister = (email, password) => {
+  const handleRegister = (name, email, password) => {
     auth
-      .register(email, password)
+      .register(name, email, password)
       .then(() => {
         navigate("/signin");
       })
@@ -90,7 +90,7 @@ function App() {
 
   function confirmUser() {
     setLoggedIn(true);
-    navigate("/movie");
+    navigate("/movies");
   }
 
   return (

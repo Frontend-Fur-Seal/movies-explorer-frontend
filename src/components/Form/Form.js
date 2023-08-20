@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 function FormWrapper({
     children, 
     title,
-    submit,
     text,
     link,
     changeLink,
-    formTypeSubmit
 }) {
 
     return (
@@ -16,7 +14,6 @@ function FormWrapper({
         <HeaderLogo />
         <h1 className="form__title">{title}</h1>
         {children}
-        <button type="submit" className={formTypeSubmit}>{submit}</button>
         <div className="form__change">
           <p className="form__change-text">{text}</p>
           <Link to={link} className="form__change-link">{changeLink}</Link>
