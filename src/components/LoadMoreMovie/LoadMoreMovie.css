@@ -1,0 +1,38 @@
+.loadMoreMovie{
+    margin: 74px auto 67px;
+    display: flex;
+    justify-content: center;
+}
+
+.loadMoreMovie__button{
+    width: 320px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid #424242;
+    background-color: #202020;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.loadMoreMovie__button:hover{
+    background-color: #424242;
+}
+
+@media screen and (max-width: 980px) {
+    .loadMoreMovie{
+        margin: 58px auto 85px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .loadMoreMovie__button{
+        width: 240px;
+    }
+    .loadMoreMovie{
+        margin: 60px auto 83px;
+    }
+  }

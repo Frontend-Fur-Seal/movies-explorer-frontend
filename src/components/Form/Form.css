@@ -1,0 +1,135 @@
+.form{
+    max-width: 396px;
+    margin: 68px auto;
+}
+
+.form__title{
+    margin: 43px auto;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.form__submit-register, .form__submit-login{
+    width: 396px;
+    height: 45px;
+    border: none;
+    background-color: #4285F4;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.form__submit-register{
+    margin: 73px auto 16px;
+}
+
+.form__submit-login{
+    margin: 157px auto 16px;
+}
+
+.form__change{
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.form__change-text{
+    font-size: 14px;
+    font-weight: 400;
+    color: #8B8B8B;
+    margin: 0;
+}
+
+.form__change-link{
+    text-decoration: none;
+    color: #4285F4;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0;
+    cursor: pointer;
+}
+
+.form__label{
+    font-size: 10px;
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    color: #8B8B8B;
+}
+
+.form__error{
+    height: 10px;
+    margin: 0;
+    color: #EE3465;
+    font-size: 10px;
+}
+
+.form__input{
+    border: none;
+    border-radius: 8px;
+    height: 46px;
+    width: 396px;
+    background-color: #2F2F2F;
+    padding: 15px;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.form__submit-register:hover, .form__submit-login:hover{
+    box-shadow: 2px 2px 20px 0px rgba(181, 183, 184, 0.2);
+}
+
+.form__change-link:hover{
+    opacity: .8;
+}
+
+.form__input:focus{
+    outline: none;
+    box-shadow: 0 0 4px 1px #fff;
+}
+
+
+@media screen and (max-width: 980px) {
+    .form{
+        max-width: 396px;
+        margin: 230px auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .form{
+        max-width: 260px;
+        margin: 55px auto 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .form__title{
+        margin: 50px auto 84px;
+    }
+    .form__input{
+        width: 260px;
+    }
+    .form__submit-register, .form__submit-login{
+        width: 260px;
+        font-size: 12px;
+    }
+    .form__submit-register{
+        margin: 159px auto 14px;
+    }
+    .form__submit-login{
+        margin: 247px auto 14px;
+    }
+    .form__change-text{
+        font-size: 12px;
+    }
+    
+    .form__change-link{
+        font-size: 12px;
+    }
+}

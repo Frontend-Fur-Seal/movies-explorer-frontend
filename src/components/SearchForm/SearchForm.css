@@ -1,0 +1,76 @@
+.searchForm{
+    margin: 80px 70px 29px;
+    max-width: 1140px;
+    display: grid;
+    grid-template-columns: 1fr 44px;
+    grid-template-areas: 
+    "searchInput searchButton"
+    "filterCheckBox filterCheckBox";
+    align-items: center;
+    border-bottom: 1px solid #424242;
+    column-gap: 10px;
+}
+
+.searchForm__input{
+    grid-area: searchInput;
+    height: 50px;
+    outline:none;
+    border: none;
+    margin: 0;
+    background-color: #2F2F2F;
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-sizing: border-box;
+    color: #8B8B8B;
+    font-size: 14px;
+    font-weight: 400;
+
+}
+
+.searchForm__submit{
+    grid-area: searchButton;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin: 0;
+    background-image: url(../../images/searchbutton.svg);
+    background-color: #4285F4;
+    background-size: contain;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.searchForm__input:focus{
+    outline: none;
+    box-shadow: 0 0 4px 1px #fff;
+}
+
+.searchForm__submit:hover{
+    box-shadow: 0 0 4px 1px #fff;   
+}
+
+@media screen and (min-width: 1281px) {
+    .searchForm{
+        margin: 80px auto 29px;
+    }
+  }
+
+@media screen and (max-width: 980px) {
+    .searchForm{
+        margin: 80px 30px 41px;
+        grid-template-rows: 50px 100px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .searchForm{
+        margin: 75px 14px 41px;
+        grid-template-rows: 50px 105px;
+    }
+    .searchForm__input{
+        height: 44px;
+        padding: 16px 14px;   
+    }
+    
+  }
