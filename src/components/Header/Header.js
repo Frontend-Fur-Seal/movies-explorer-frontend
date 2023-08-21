@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import UserGreeting from "../UserGreeting/UserGreeting";
 import GuestGreeting from "../GuestGreeting/GuestGreeting";
@@ -8,7 +9,14 @@ import HeaderLogo from "../HeaderLogo/HeaderLogo";
 
 function Header(props) {
 
-  const [toggle, setToggle] = useState(false);
+  const location = useLocation();
+
+  const [isActiveSidebar, setIsActiveSidebar] = useState(false);
+  const [isLocation, setIsLocation] = useState(location);
+
+  function changeLocation(){
+    setIsActiveSidebar(!isActiveSidebar);
+  }
 
   return (
     <header className="header">
@@ -22,11 +30,11 @@ function Header(props) {
       {props.loggedIn && (
         <button
           type="button"
-          className={`header__icon ${toggle ? "header__icon_opened" : ""}`}
-          onClick={() => setToggle(!toggle)}
+          className={`header__icon ${isActiveSidebar ? "header__icon_opened" : ""}`}
+          onClick={() => setIsActiveSidebar(!isActiveSidebar)}
         ></button>
       )}
-      {toggle && <SideBar />}
+      {isActiveSidebar && <SideBar changeLocation={changeLocation} />}
     </header>
   );
 }

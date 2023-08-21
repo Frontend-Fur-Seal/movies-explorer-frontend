@@ -88,6 +88,15 @@ function App() {
       });
   };
 
+  function onSignOut(){
+    mainApi.SignOut()
+    .then(() => {
+      setLoggedIn(false); 
+      navigate('/')
+    })
+    .catch((err) => console.error(err));
+  }
+
   function confirmUser() {
     setLoggedIn(true);
     navigate("/movies");
@@ -117,6 +126,7 @@ function App() {
             <Route path="/profile" element={<ProtectedRouteElement 
             element={Profile} 
             loggedIn={loggedIn}  
+            onSignOut={onSignOut}
             />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

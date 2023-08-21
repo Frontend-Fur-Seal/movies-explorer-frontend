@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Profile() {
+function Profile(props) {
+
   const [disableInput, setDisableInput] = useState(true);
 
   function editUser(e) {
@@ -65,9 +66,9 @@ function Profile() {
             </button>
           )}
         </form>
-        <Link to="/" className="profile__signOut">
+        <button className="profile__signOut" onClick={props.onSignOut}>
           Выйти из аккаунта
-        </Link>
+        </button>
       </section>
     </main>
   );
