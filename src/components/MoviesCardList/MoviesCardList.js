@@ -1,3 +1,12 @@
+import {
+  LG_ROW_CARD_COUNT,
+  MD_ROW_CARD_COUNT,
+  SM_ROW_CARD_COUNT,
+  LG_INITIAL_CARD_COUNT,
+  MD_INITIAL_CARD_COUNT,
+  SM_INITIAL_CARD_COUNT,
+  } from "../../utils/constants.js"
+
 import { React, Suspense, lazy, useState } from "react";
 import { useMediaQuery } from "../../hooks/useMediaQuery.js";
 import Preloader from "../Preloader/Preloader.js";
@@ -5,15 +14,8 @@ import LoadMoreMovie from "../LoadMoreMovie/LoadMoreMovie.js";
 const MoviesCard = lazy(() => import("../MoviesCard/MoviesCard.js"));
 
 function MoviesCardList(props) {
+  
   const filterMovies = props.FilterMovie;
-
-  const LG_ROW_CARD_COUNT = 3;
-  const MD_ROW_CARD_COUNT = 2;
-  const SM_ROW_CARD_COUNT = 2;
-
-  const LG_INITIAL_CARD_COUNT = 12;
-  const MD_INITIAL_CARD_COUNT = 8;
-  const SM_INITIAL_CARD_COUNT = 5;
 
   const isDesktop = useMediaQuery("(min-width: 980px)");
   const isTablet = useMediaQuery("(min-width: 600px)");
@@ -56,7 +58,7 @@ function MoviesCardList(props) {
       <Suspense fallback={<Preloader />}>
           <ul className="moviesCardList">
           {filterMovies?.slice(0, roundedVisibleCardCount).map((movie) => (
-            <MoviesCard key={movie.id} movie={movie} />
+            <MoviesCard key={movie.id || movie.movieId} movie={movie} handleSaveMovie={props.handleSaveMovie} Movies={props.Movies}/>
           ))}
         </ul>
       </Suspense>

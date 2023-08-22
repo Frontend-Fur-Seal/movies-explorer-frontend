@@ -7,19 +7,20 @@ function SearchForm(props) {
   const [isShort, setIsShort] = React.useState(false);
 
   useEffect(() => {
-    if (movieRequest) {
-      props.newMovieFind(movieRequest, isShort);
-    }
+    props.newMovieFind(movieRequest, isShort);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShort])
 
   useEffect(()=> {
+    if(props.Movies){
     const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
     if(userSavedSearch.length !== 0){
       const {movieRequest, isShort} = userSavedSearch;
       setmovieRequest(movieRequest);
       setIsShort(isShort)
     }
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   function handleChangeMovie(e) {
@@ -39,7 +40,7 @@ function SearchForm(props) {
     <section className="searchMovie">
       <form className="searchForm" onSubmit={SearchMovies}>
         <input
-          required={true}
+          required={props.Movies}
           minLength={1}
           value={movieRequest}
           type="text"

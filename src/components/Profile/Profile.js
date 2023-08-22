@@ -1,20 +1,38 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function Profile(props) {
+  const [name, setNewName] = useState("");
+  const [description, setNewDescription] = useState("");
 
-  const [disableInput, setDisableInput] = useState(true);
+  const currentUser = useContext(CurrentUserContext);
 
-  function editUser(e) {
+  function handleChangeName(e) {
+    setNewName(e.target.value);
+  }
+
+  function handleChangeDescription(e) {
+    setNewDescription(e.target.value);
+  }
+
+  useEffect(() => {
+    setNewName(currentUser.name);
+    setNewDescription(currentUser.email);
+  }, [currentUser]);
+
+  function handleSubmit(e) {
     e.preventDefault();
-    setDisableInput(!disableInput);
+    props.onUpdateUser({
+      name,
+      email: description,
+    });
   }
 
   return (
     <main className="main">
       <section className="profile">
-        <h1 className="profile__title">Привет, Владимир</h1>
-        <form className="profile__form">
+        <h1 className="profile__title">Привет, {currentUser.name}</h1>
+        <form className="profile__form" onSubmit={handleSubmit}>
           <div className="profile__inputs">
             <div className="profile__name">
               <label htmlFor="inputChange-name" className="profile__label">
@@ -22,14 +40,13 @@ function Profile(props) {
               </label>
               <input
                 placeholder="Имя"
-                value={"Владимир"}
+                value={name || ""}
                 id="inputChange-name"
                 minLength={2}
                 maxLength={20}
                 type="text"
                 className="profile__input"
-                disabled={disableInput}
-                ref={input => input && input.focus()}
+                onChange={handleChangeName}
               />
             </div>
             <div className="profile__email">
@@ -38,33 +55,22 @@ function Profile(props) {
               </label>
               <input
                 placeholder="Email"
-                value={"test@test.ru"}
+                value={description || ""}
                 id="inputChange-email"
                 minLength={2}
                 maxLength={20}
                 type="email"
                 className="profile__input"
-                disabled={disableInput}
+                onChange={handleChangeDescription}
               />
             </div>
           </div>
-          {disableInput ? (
-            <button
-              type="button"
-              className="profile__change"
-              onClick={editUser}
+            <button type="submit" 
+            className="profile__change"
             >
               Редактировать
             </button>
-          ) : (
-            <button
-              type="submit"
-              className="profile__change"
-              onClick={editUser}
-            >
-              Сохранить
-            </button>
-          )}
+          
         </form>
         <button className="profile__signOut" onClick={props.onSignOut}>
           Выйти из аккаунта

@@ -28,8 +28,8 @@ class MainApi {
       });
     }
   
-    getInitialCards() {
-      return fetch(`${this._baseUrl}/cards`, {
+    getMovies() {
+      return fetch(`${this._baseUrl}/movies`, {
         method: "GET",
         headers: this._headers,
         credentials: 'include',
@@ -56,8 +56,8 @@ class MainApi {
       }).then((res) => this._checkStatus(res));
     }
   
-    postInitialCard(data) {
-      return fetch(`${this._baseUrl}/cards`, {
+    saveMovie(data) {
+      return fetch(`${this._baseUrl}/movies`, {
         method: "POST",
         headers: this._headers,
         credentials: 'include',
