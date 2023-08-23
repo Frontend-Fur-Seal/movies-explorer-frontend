@@ -21,6 +21,10 @@
     cursor: pointer;
 }
 
+.form__submit-login[disabled]{
+    background-color: #a0b2d0;
+  }
+
 .form__submit-register{
     margin: 73px auto 16px;
 }
@@ -82,6 +86,10 @@
 
 .form__submit-register:hover, .form__submit-login:hover{
     box-shadow: 2px 2px 20px 0px rgba(181, 183, 184, 0.2);
+}
+
+.form__submit-login[disabled]:hover{
+    box-shadow: none;
 }
 
 .form__change-link:hover{

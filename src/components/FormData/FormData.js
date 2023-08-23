@@ -1,7 +1,7 @@
 import HeaderLogo from "../HeaderLogo/HeaderLogo";
 import { Link } from "react-router-dom";
 
-function FormWrapper({
+function FormData({
     children, 
     title,
     text,
@@ -22,5 +22,5 @@ function FormWrapper({
     );
   }
   
-  export default FormWrapper;
+  export default FormData;
   

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Form from "../Form/Form.js";
+import FormData from "../FormData/FormData.js";
 
 function Register( {handleRegister} ) {
 
@@ -26,7 +26,7 @@ const handleSubmit = (e) => {
 console.log(formValue)
   return (
     <main className="main">
-      <Form
+      <FormData
         title={"Добро пожаловать!"}
         text={"Уже зарегистрированы?"}
         changeLink={"Войти"}
@@ -82,7 +82,7 @@ console.log(formValue)
           <p className="form__error"></p>
           <button type="submit" className='form__submit-register'>Зарегистрироваться</button>
         </form>
-      </Form>
+      </FormData>
     </main>
   );
 }
