@@ -29,7 +29,7 @@ function App() {
   const [allMovies, setAllMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
-  const [filterMovies, setFilterMovies] = useState([]);
+  const [filterMovies, setFilterMovies] = useState(savedMovies);
 
   // Api
 
@@ -70,10 +70,10 @@ function App() {
       .getMovies()
       .then((data) => {
         setSavedMovies(data);
-        setFilterMovies(data);
       })
       .catch((error) => console.log(error));
-  }, [loggedIn]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Show/hidden Header
 
@@ -227,7 +227,6 @@ function App() {
             element={SavedMovies} 
             loggedIn={loggedIn}  
             SearchSaveMovie={SearchSaveMovie}
-            savedMovies={savedMovies}
             filterMovies={filterMovies}
             />} />
             <Route path="/profile" element={<ProtectedRouteElement 

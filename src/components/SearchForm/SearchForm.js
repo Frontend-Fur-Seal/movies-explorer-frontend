@@ -1,39 +1,42 @@
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.js";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function SearchForm(props) {
 
   const [movieRequest, setmovieRequest] = useState("");
-  const [isShort, setIsShort] = React.useState(false);
+  const [isShort, setIsShort] = useState(false);
 
   useEffect(() => {
-    props.newMovieFind(movieRequest, isShort);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isShort])
-
-  useEffect(()=> {
-    if(props.Movies){
-    const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
-    if(userSavedSearch.length !== 0){
-      const {movieRequest, isShort} = userSavedSearch;
-      setmovieRequest(movieRequest);
-      setIsShort(isShort)
+      if (props.FilterMovie.length !== 0) {
+        props.newMovieFind(movieRequest, isShort);
     }
-  }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isShort]);
+
+  useEffect(() => {
+    if (props.Movies) {
+      const userSavedSearch =
+        JSON.parse(localStorage.getItem("userMovie")) || [];
+      if (userSavedSearch.length !== 0) {
+        const { movieRequest, isShort } = userSavedSearch;
+        setmovieRequest(movieRequest);
+        setIsShort(isShort);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function handleChangeMovie(e) {
     setmovieRequest(e.target.value);
   }
 
-  function SearchMovies(e){
+  function SearchMovies(e) {
     e.preventDefault();
     props.newMovieFind(movieRequest, isShort);
   }
 
-  function changeMoviesLength(){
-    setIsShort(!isShort)
+  function changeMoviesLength() {
+    setIsShort(!isShort);
   }
 
   return (
@@ -49,7 +52,10 @@ function SearchForm(props) {
           onChange={handleChangeMovie}
         />
         <button type="submit" className="searchForm__submit"></button>
-        <FilterCheckbox changeMoviesLength={changeMoviesLength} isShort={isShort}/>
+        <FilterCheckbox
+          changeMoviesLength={changeMoviesLength}
+          isShort={isShort}
+        />
       </form>
     </section>
   );

@@ -6,8 +6,8 @@ function SavedMovies(props) {
   return (
     <main className="main">
       <div className="savedMovies">
-        <SearchForm newMovieFind={props.SearchSaveMovie} Movies={false}/>
-        {props.savedMovies.length === 0 ? (
+        <SearchForm Movies={false} newMovieFind={props.SearchSaveMovie} FilterMovie={props.filterMovies}/>
+        {props.filterMovies.length === 0 ? (
           <p className="savedMovies__notSave">Вы пока ничего не сохранили</p>
         ) : (
           <MoviesCardList FilterMovie={props.filterMovies} Movies={false}/>
