@@ -69,10 +69,11 @@
 }
 
 .form__error{
-    height: 10px;
+    min-height: 10px;
     margin: 0;
     color: #EE3465;
     font-size: 10px;
+    flex-basis: 80%;
 }
 
 .form__input{

@@ -48,38 +48,35 @@ function Profile({ onUpdateUser, onSignOut }) {
                     Имя
                   </label>
                   <Field
-                    name='name'
+                    name="name"
                     validate={validateName}
                     placeholder="Имя"
                     id="inputChange-name"
                     type="text"
                     className="profile__input"
                   />
-                  {errors.name && touched.name && (
-                    <p className="form__error">{errors.email}</p>
-                  )}
                 </div>
+                <p className="form__error form__error_ProfileName">{errors.name}</p>
                 <div className="profile__email">
                   <label htmlFor="inputChange-email" className="profile__label">
                     Email
                   </label>
                   <Field
-                    name='email'
+                    name="email"
                     validate={validateEmail}
                     placeholder="Email"
                     id="inputChange-email"
                     type="email"
                     className="profile__input"
                   />
-                  {errors.email && touched.email && (
-                    <p className="form__error">{errors.email}</p>
-                  )}
                 </div>
+                <p className="form__error">{errors.email}</p>
               </div>
-              <button 
-              type="submit" 
-              className="profile__change"
-              disabled={!(isValid && dirty)}>
+              <button
+                type="submit"
+                className="profile__change"
+                disabled={!(isValid && dirty)}
+              >
                 Редактировать
               </button>
             </Form>
