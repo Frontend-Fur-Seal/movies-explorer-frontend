@@ -1,78 +1,91 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
+import { Formik, Form, Field } from "formik";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
-function Profile(props) {
-  const [name, setNewName] = useState("");
-  const [description, setNewDescription] = useState("");
-
+function Profile({ onUpdateUser, onSignOut }) {
   const currentUser = useContext(CurrentUserContext);
 
-  function handleChangeName(e) {
-    setNewName(e.target.value);
+  function validateName(value) {
+    let error;
+    if (!value) {
+      error = "Поле обязательно к заполнению";
+    } else if (value.length < 2) {
+      error = "Слишком короткое имя";
+    } else if (value.length > 30) {
+      error = "Имя слишком длинное";
+    }
+    return error;
   }
 
-  function handleChangeDescription(e) {
-    setNewDescription(e.target.value);
-  }
-
-  useEffect(() => {
-    setNewName(currentUser.name);
-    setNewDescription(currentUser.email);
-  }, [currentUser]);
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    props.onUpdateUser({
-      name,
-      email: description,
-    });
+  function validateEmail(value) {
+    let error;
+    if (!value) {
+      error = "Поле обязательно к заполнению";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+      error = "Некорректный email";
+    }
+    return error;
   }
 
   return (
     <main className="main">
       <section className="profile">
         <h1 className="profile__title">Привет, {currentUser.name}</h1>
-        <form className="profile__form" onSubmit={handleSubmit}>
-          <div className="profile__inputs">
-            <div className="profile__name">
-              <label htmlFor="inputChange-name" className="profile__label">
-                Имя
-              </label>
-              <input
-                placeholder="Имя"
-                value={name || ""}
-                id="inputChange-name"
-                minLength={2}
-                maxLength={20}
-                type="text"
-                className="profile__input"
-                onChange={handleChangeName}
-              />
-            </div>
-            <div className="profile__email">
-              <label htmlFor="inputChange-email" className="profile__label">
-                Email
-              </label>
-              <input
-                placeholder="Email"
-                value={description || ""}
-                id="inputChange-email"
-                minLength={2}
-                maxLength={20}
-                type="email"
-                className="profile__input"
-                onChange={handleChangeDescription}
-              />
-            </div>
-          </div>
-            <button type="submit" 
-            className="profile__change"
-            >
-              Редактировать
-            </button>
-          
-        </form>
-        <button className="profile__signOut" onClick={props.onSignOut}>
+        <Formik
+          initialValues={{
+            name: currentUser.name,
+            email: currentUser.email,
+          }}
+          onSubmit={(values) => {
+            onUpdateUser(values.name, values.email);
+          }}
+        >
+          {({ errors, touched, isValid, dirty }) => (
+            <Form className="profile__form">
+              <div className="profile__inputs">
+                <div className="profile__name">
+                  <label htmlFor="inputChange-name" className="profile__label">
+                    Имя
+                  </label>
+                  <Field
+                    name='name'
+                    validate={validateName}
+                    placeholder="Имя"
+                    id="inputChange-name"
+                    type="text"
+                    className="profile__input"
+                  />
+                  {errors.name && touched.name && (
+                    <p className="form__error">{errors.email}</p>
+                  )}
+                </div>
+                <div className="profile__email">
+                  <label htmlFor="inputChange-email" className="profile__label">
+                    Email
+                  </label>
+                  <Field
+                    name='email'
+                    validate={validateEmail}
+                    placeholder="Email"
+                    id="inputChange-email"
+                    type="email"
+                    className="profile__input"
+                  />
+                  {errors.email && touched.email && (
+                    <p className="form__error">{errors.email}</p>
+                  )}
+                </div>
+              </div>
+              <button 
+              type="submit" 
+              className="profile__change"
+              disabled={!(isValid && dirty)}>
+                Редактировать
+              </button>
+            </Form>
+          )}
+        </Formik>
+        <button className="profile__signOut" onClick={onSignOut}>
           Выйти из аккаунта
         </button>
       </section>

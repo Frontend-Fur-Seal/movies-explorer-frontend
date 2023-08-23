@@ -53,7 +53,7 @@ function Register({ handleRegister }) {
             handleRegister(values.name, values.email, values.password);
           }}
         >
-          {({ errors, touched, isValid, dirty }) => (
+          {({ errors, touched, isValid }) => (
             <Form className="register">
               <label htmlFor="registerInput-name" className="form__label">
                 Имя

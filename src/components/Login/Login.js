@@ -43,7 +43,7 @@ function Login({ handleLogin }) {
             handleLogin(values.email, values.password);
           }}
         >
-          {({ errors, touched, isValid, dirty }) => (
+          {({ errors, touched, isValid }) => (
             <Form className="login">
               <label htmlFor="loginInput-email" className="form__label">
                 E-mail

@@ -24,7 +24,6 @@ function App() {
 
   // States
 
-
   const [loggedIn, setLoggedIn] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [allMovies, setAllMovies] = useState([]);
@@ -32,13 +31,13 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [filterMovies, setFilterMovies] = useState(savedMovies);
 
-  useEffect(()=> {
+  useEffect(() => {
     const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
-    if(userSavedSearch.length !== 0){
-      const {filteredList} = userSavedSearch;
+    if (userSavedSearch.length !== 0) {
+      const { filteredList } = userSavedSearch;
       setMovies(filteredList);
     }
-  },[])
+  }, []);
 
   // Api
 
@@ -81,7 +80,7 @@ function App() {
         setSavedMovies(data);
       })
       .catch((error) => console.log(error));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Show/hidden Header
@@ -128,14 +127,15 @@ function App() {
       });
   };
 
-  function onSignOut(){
-    mainApi.SignOut()
-    .then(() => {
-      localStorage.removeItem("userMovie");
-      setLoggedIn(false); 
-      navigate('/')
-    })
-    .catch((err) => console.error(err));
+  function onSignOut() {
+    mainApi
+      .SignOut()
+      .then(() => {
+        localStorage.removeItem("userMovie");
+        setLoggedIn(false);
+        navigate("/");
+      })
+      .catch((err) => console.error(err));
   }
 
   function confirmUser() {
@@ -145,9 +145,9 @@ function App() {
 
   // Обновление данных юзера
 
-  function handleUpdateUser({ name, email }) {
+  function handleUpdateUser(name, email) {
     mainApi
-      .postInitialUser({ name, email })
+      .postInitialUser({name, email})
       .then((res) => {
         setCurrentUser(res.data);
       })
@@ -157,26 +157,28 @@ function App() {
   // Movies
 
   function SearchMovie(movieRequest, isShort) {
-    allMovies.length === 0 ? SearchMovieApi(movieRequest, isShort) : SearchMovieState(movieRequest, isShort);
+    allMovies.length === 0
+      ? SearchMovieApi(movieRequest, isShort)
+      : SearchMovieState(movieRequest, isShort);
   }
 
-  function SearchMovieApi(movieRequest, isShort){
+  function SearchMovieApi(movieRequest, isShort) {
     api
       .getMovies()
       .then((data) => {
         setAllMovies(data);
-        addLocalStorage(data, movieRequest, isShort)
+        addLocalStorage(data, movieRequest, isShort);
       })
-      .catch((error) => console.log(error))
+      .catch((error) => console.log(error));
   }
 
-  function SearchMovieState(movieRequest, isShort){
+  function SearchMovieState(movieRequest, isShort) {
     localStorage.removeItem("userMovie");
     addLocalStorage(allMovies, movieRequest, isShort);
   }
 
-  function addLocalStorage(data, movieRequest, isShort){
-    const filteredList = filterData(data, movieRequest, isShort)
+  function addLocalStorage(data, movieRequest, isShort) {
+    const filteredList = filterData(data, movieRequest, isShort);
     setMovies(filteredList);
     localStorage.setItem(
       "userMovie",
@@ -191,17 +193,16 @@ function App() {
     setFilterMovies(filteredList);
   }
 
-  function handleSaveMovie(movie){
-    console.log(movie)
+  function handleSaveMovie(movie) {
+    console.log(movie);
     mainApi
-    .saveMovie(movie)
-    .then((movie) => {
-      setFilterMovies([movie, ...savedMovies])
-    })
-    .catch((error) => {
-      console.log(`Ошибка ${error}`);
-    });
-
+      .saveMovie(movie)
+      .then((movie) => {
+        setFilterMovies([movie, ...savedMovies]);
+      })
+      .catch((error) => {
+        console.log(`Ошибка ${error}`);
+      });
   }
 
   return (
@@ -209,33 +210,46 @@ function App() {
       <div className="App">
         {showHeader() && <Header loggedIn={loggedIn} />}
         <Routes>
-          <Route 
-            path="/signin" 
-            element={<Login handleLogin={handleLogin} />} />
+          <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
           <Route
             path="/signup"
             element={<Register handleRegister={handleRegister} />}
           />
           <Route path="/" element={<Main />} />
-          <Route path="/movies" element={<ProtectedRouteElement 
-            element={Movies} 
-            loggedIn={loggedIn}  
-            SearchMovie={SearchMovie}
-            movies={movies}
-            handleSaveMovie={handleSaveMovie}
-            />} />
-          <Route path="/saved-movies" element={<ProtectedRouteElement 
-            element={SavedMovies} 
-            loggedIn={loggedIn}  
-            SearchSaveMovie={SearchSaveMovie}
-            filterMovies={filterMovies}
-            />} />
-            <Route path="/profile" element={<ProtectedRouteElement 
-            element={Profile} 
-            loggedIn={loggedIn}  
-            onUpdateUser={handleUpdateUser}
-            onSignOut={onSignOut}
-            />} />
+          <Route
+            path="/movies"
+            element={
+              <ProtectedRouteElement
+                element={Movies}
+                loggedIn={loggedIn}
+                SearchMovie={SearchMovie}
+                movies={movies}
+                handleSaveMovie={handleSaveMovie}
+              />
+            }
+          />
+          <Route
+            path="/saved-movies"
+            element={
+              <ProtectedRouteElement
+                element={SavedMovies}
+                loggedIn={loggedIn}
+                SearchSaveMovie={SearchSaveMovie}
+                filterMovies={filterMovies}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRouteElement
+                element={Profile}
+                loggedIn={loggedIn}
+                onUpdateUser={handleUpdateUser}
+                onSignOut={onSignOut}
+              />
+            }
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         {showFooter() && <Footer />}
