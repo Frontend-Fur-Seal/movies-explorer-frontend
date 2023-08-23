@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import SearchForm from "../SearchForm/SearchForm.js";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.js";
 

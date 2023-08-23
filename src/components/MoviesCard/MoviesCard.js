@@ -1,12 +1,8 @@
-import { useState, useContext } from "react";
-import { useLocation } from "react-router-dom";
-import CurrentMoviesContext from "../../contexts/CurrentMoviesContext.js";
+import { useState } from "react";
 
 function MoviesCard(props) {
   const [movieSaveState, setmovieSaveState] = useState(false);
   const isSaved = movieSaveState ? "" : "Сохранить";
-
-  //пропс отвечающий за пас
 
   const movie = props.movie;
 
@@ -41,12 +37,8 @@ function MoviesCard(props) {
     movieId: id,
   };
 
-  function handleSaveMovie() {
-    props.handleSaveMovie(movieSave);
-  }
-
-  function deleteSaveMovie(){
-    
+  function handleChangeSaveMovie() {
+    props.handleChangeSaveMovie(movieSave);
   }
 
   return (
@@ -63,9 +55,8 @@ function MoviesCard(props) {
             alt={movie.nameRU}
           />
         </a>
-        {props.Movies ? (
           <button
-            onClick={handleSaveMovie}
+            onClick={handleChangeSaveMovie}
             type="button"
             className={`${
               movieSaveState
@@ -75,14 +66,6 @@ function MoviesCard(props) {
           >
             {isSaved}
           </button>
-        ) : (
-          <button
-            onClick={deleteSaveMovie}
-            type="button"
-            className="moviesCard__saveMovie_saved"
-          >
-          </button>
-        )}
       </div>
       <div className="moviesCard__info">
         <h2 className="moviesCard__name">{movie.nameRU}</h2>

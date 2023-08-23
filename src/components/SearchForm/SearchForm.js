@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 
 function SearchForm(props) {
 
+  //console.log(props.FilterMovie.length)
+
   const [movieRequest, setmovieRequest] = useState("");
   const [isShort, setIsShort] = useState(false);
 
   useEffect(() => {
-      if (props.FilterMovie.length !== 0) {
+      if (movieRequest) {
         props.newMovieFind(movieRequest, isShort);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -24,12 +24,21 @@ function App() {
 
   // States
 
+
   const [loggedIn, setLoggedIn] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [allMovies, setAllMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [filterMovies, setFilterMovies] = useState(savedMovies);
+
+  useEffect(()=> {
+    const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
+    if(userSavedSearch.length !== 0){
+      const {filteredList} = userSavedSearch;
+      setMovies(filteredList);
+    }
+  },[])
 
   // Api
 
@@ -146,14 +155,6 @@ function App() {
   }
 
   // Movies
-
-  useEffect(()=> {
-    const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
-    if(userSavedSearch.length !== 0){
-      const {filteredList} = userSavedSearch;
-      setMovies(filteredList);
-    }
-  },[])
 
   function SearchMovie(movieRequest, isShort) {
     allMovies.length === 0 ? SearchMovieApi(movieRequest, isShort) : SearchMovieState(movieRequest, isShort);
