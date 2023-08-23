@@ -22,7 +22,11 @@
 }
 
 .form__submit-login[disabled]{
-    background-color: #a0b2d0;
+    background-color: grey;
+  }
+
+  .form__submit-register[disabled]{
+    background-color: grey;
   }
 
 .form__submit-register{
@@ -89,6 +93,10 @@
 }
 
 .form__submit-login[disabled]:hover{
+    box-shadow: none;
+}
+
+.form__submit-register[disabled]:hover{
     box-shadow: none;
 }
 
