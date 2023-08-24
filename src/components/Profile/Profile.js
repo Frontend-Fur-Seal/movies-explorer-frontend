@@ -32,6 +32,7 @@ function Profile({ onUpdateUser, onSignOut }) {
       <section className="profile">
         <h1 className="profile__title">Привет, {currentUser.name}</h1>
         <Formik
+          enableReinitialize={true}
           initialValues={{
             name: currentUser.name,
             email: currentUser.email,
@@ -40,7 +41,7 @@ function Profile({ onUpdateUser, onSignOut }) {
             onUpdateUser(values.name, values.email);
           }}
         >
-          {({ errors, touched, isValid, dirty }) => (
+          {({ errors, isValid, dirty }) => (
             <Form className="profile__form">
               <div className="profile__inputs">
                 <div className="profile__name">
@@ -77,7 +78,7 @@ function Profile({ onUpdateUser, onSignOut }) {
                 className="profile__change"
                 disabled={!(isValid && dirty)}
               >
-                Редактировать
+                Сохранить
               </button>
             </Form>
           )}
