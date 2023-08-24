@@ -2,7 +2,6 @@ import CurrentMoviesContext from "../../contexts/CurrentMoviesContext.js";
 import { useContext } from "react";
 
 function MoviesCard(props) {
-
   const currentMovies = useContext(CurrentMoviesContext);
   const movie = props.movie;
 
@@ -27,11 +26,7 @@ function MoviesCard(props) {
   return (
     <li className="moviesCard">
       <div className="moviesCard__img">
-        <a
-          href={movie.trailerLink}
-          rel="noreferrer"
-          target="_blank"
-        >
+        <a href={movie.trailerLink} rel="noreferrer" target="_blank">
           <img
             className="moviesCard__element"
             src={
@@ -42,13 +37,21 @@ function MoviesCard(props) {
             alt={movie.nameRU}
           />
         </a>
-        <button
-          onClick={isSaved ? handleMovieDelete : handleMovieSave}
-          type="button"
-          className={MovieSaveButtonClassName}
-        >
-          {isSaved ? "" : "Сохранить"}
-        </button>
+        {props.isAllMovies ? (
+          <button
+            onClick={handleMovieSave}
+            type="button"
+            className={MovieSaveButtonClassName}
+          >
+            {isSaved ? "" : "Сохранить"}
+          </button>
+        ) : (
+          <button
+            onClick={handleMovieDelete}
+            type="button"
+            className="moviesCard__saveMovie_saved"
+          ></button>
+        )}
       </div>
       <div className="moviesCard__info">
         <h2 className="moviesCard__name">{movie.nameRU}</h2>
