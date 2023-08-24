@@ -47,15 +47,6 @@ class MainApi {
       }).then((res) => this._checkStatus(res));
     }
   
-    postInitialUserAvatar(data) {
-      return fetch(`${this._baseUrl}/users/me/avatar`, {
-        method: "PATCH",
-        headers: this._headers,
-        credentials: 'include',
-        body: JSON.stringify(data),
-      }).then((res) => this._checkStatus(res));
-    }
-  
     saveMovie(data) {
       return fetch(`${this._baseUrl}/movies`, {
         method: "POST",
@@ -67,28 +58,12 @@ class MainApi {
       });
     }
   
-    cardDelete(cardId) {
-      return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    movieDelete(movieId) {
+      return fetch(`${this._baseUrl}/movies/${movieId}`, {
         method: "DELETE",
         headers: this._headers,
         credentials: 'include',
       }).then((res) => this._checkStatus(res));
-    }
-  
-    changeLikeCardStatus(cardId, isLiked){
-      if(!isLiked){
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes `, {
-          method: "PUT",
-          headers: this._headers,
-          credentials: 'include',
-        }).then((res) => this._checkStatus(res));
-      }else{
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes `, {
-          method: "DELETE",
-          headers: this._headers,
-          credentials: 'include',
-        }).then((res) => this._checkStatus(res));
-      }
     }
   }
   

@@ -12,6 +12,7 @@ function Movies(props) {
         <MoviesCardList
           movies={props.movies}
           handleMovieSave={props.handleMovieSave}
+          handleMovieDeleteAllMovies={props.handleMovieDeleteAllMovies}
           isAllMovies={true}
         />
       </div>

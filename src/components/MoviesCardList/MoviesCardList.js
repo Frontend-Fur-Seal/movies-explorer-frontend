@@ -67,6 +67,7 @@ function MoviesCardList(props) {
                 key={movie.id}
                 movie={movie}
                 handleMovieSave={props.handleMovieSave}
+                handleMovieDeleteAllMovies={props.handleMovieDeleteAllMovies}
               />
             ))}
           </ul>

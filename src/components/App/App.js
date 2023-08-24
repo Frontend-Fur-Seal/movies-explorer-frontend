@@ -220,7 +220,23 @@ function App() {
   }
 
   function handleMovieDelete(movie){
-    console.log(movie)
+    mainApi
+    .movieDelete(movie._id)
+    .then((movie) => {
+      setFilterMovies((state) => state.filter((c) => c._id != movie._id));
+      setSavedMovies((state) => state.filter((c) => c._id != movie._id));
+    })
+  }
+
+  function handleMovieDeleteAllMovies(movie){
+    let currentMovie = filterMovies.find(elem => elem.movieId === movie.id)
+    mainApi
+    .movieDelete(currentMovie._id)
+    .then((movie) => {
+      console.log(movie)
+      setFilterMovies((state) => state.filter((c) => c._id != currentMovie._id));
+      setSavedMovies((state) => state.filter((c) => c._id != currentMovie._id));
+    })
   }
 
   return (
@@ -244,6 +260,7 @@ function App() {
                 SearchMovie={SearchMovie}
                 movies={movies}
                 handleMovieSave={handleMovieSave}
+                handleMovieDeleteAllMovies={handleMovieDeleteAllMovies}
               />
             }
           />

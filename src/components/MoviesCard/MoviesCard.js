@@ -19,6 +19,10 @@ function MoviesCard(props) {
     props.handleMovieDelete(movie);
   }
 
+  function handleMovieDeleteAllMovies(){
+    props.handleMovieDeleteAllMovies(movie)
+  }
+
   function handleMovieSave() {
     props.handleMovieSave(movie);
   }
@@ -39,7 +43,7 @@ function MoviesCard(props) {
         </a>
         {props.isAllMovies ? (
           <button
-            onClick={handleMovieSave}
+            onClick={isSaved ? handleMovieDeleteAllMovies : handleMovieSave}
             type="button"
             className={MovieSaveButtonClassName}
           >
