@@ -25,7 +25,7 @@ function App() {
 
   // States
 
-  const [loggedIn, setLoggedIn] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [allMovies, setAllMovies] = useState([]);
   const [movies, setMovies] = useState([]);
@@ -75,15 +75,17 @@ function App() {
   }, [loggedIn]);
 
   useEffect(() => {
-    mainApi
-      .getMovies()
-      .then((data) => {
-        setSavedMovies(data);
-        setFilterMovies(data);
-      })
-      .catch((error) => console.log(error));
+    if (loggedIn) {
+      mainApi
+        .getMovies()
+        .then((data) => {
+          setSavedMovies(data);
+          setFilterMovies(data);
+        })
+        .catch((error) => console.log(error));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loggedIn]);
 
   // Show/hidden Header
 
@@ -135,6 +137,7 @@ function App() {
       .then(() => {
         localStorage.removeItem("userMovie");
         setLoggedIn(false);
+        setMovies([]);
         navigate("/");
       })
       .catch((err) => console.error(err));
@@ -149,7 +152,7 @@ function App() {
 
   function handleUpdateUser(name, email) {
     mainApi
-      .postInitialUser({name, email})
+      .postInitialUser({ name, email })
       .then((res) => {
         setCurrentUser(res.data);
       })
@@ -198,20 +201,20 @@ function App() {
   function handleMovieSave(movie) {
     mainApi
       .saveMovie({
-      country: movie.country,
-      director: movie.director,
-      duration: movie.duration,
-      year: movie.year,
-      description: movie.description,
-      trailerLink: movie.trailerLink,
-      nameRU: movie.nameRU,
-      nameEN: movie.nameEN,
-      image: `https://api.nomoreparties.co${movie.image.url}`,
-      thumbnail: `https://api.nomoreparties.co${movie.image.url}`,
-      movieId: movie.id,
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        trailerLink: movie.trailerLink,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        image: `https://api.nomoreparties.co${movie.image.url}`,
+        thumbnail: `https://api.nomoreparties.co${movie.image.url}`,
+        movieId: movie.id,
       })
       .then((movie) => {
-        setSavedMovies([movie.data, ...savedMovies])
+        setSavedMovies([movie.data, ...savedMovies]);
         setFilterMovies([movie.data, ...filterMovies]);
       })
       .catch((error) => {
@@ -219,77 +222,78 @@ function App() {
       });
   }
 
-  function handleMovieDelete(movie){
-    mainApi
-    .movieDelete(movie._id)
-    .then((movie) => {
+  function handleMovieDelete(movie) {
+    mainApi.movieDelete(movie._id).then((movie) => {
       setFilterMovies((state) => state.filter((c) => c._id != movie._id));
       setSavedMovies((state) => state.filter((c) => c._id != movie._id));
-    })
+    });
   }
 
-  function handleMovieDeleteAllMovies(movie){
-    let currentMovie = filterMovies.find(elem => elem.movieId === movie.id)
-    mainApi
-    .movieDelete(currentMovie._id)
-    .then((movie) => {
-      console.log(movie)
-      setFilterMovies((state) => state.filter((c) => c._id != currentMovie._id));
+  function handleMovieDeleteAllMovies(movie) {
+    let currentMovie = filterMovies.find((elem) => elem.movieId === movie.id);
+    mainApi.movieDelete(currentMovie._id).then((movie) => {
+      console.log(movie);
+      setFilterMovies((state) =>
+        state.filter((c) => c._id != currentMovie._id)
+      );
       setSavedMovies((state) => state.filter((c) => c._id != currentMovie._id));
-    })
+    });
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-          <CurrentMoviesContext.Provider value={filterMovies}>
-      <div className="App">
-        {showHeader() && <Header loggedIn={loggedIn} />}
-        <Routes>
-          <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
-          <Route
-            path="/signup"
-            element={<Register handleRegister={handleRegister} />}
-          />
-          <Route path="/" element={<Main />} />
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRouteElement
-                element={Movies}
-                loggedIn={loggedIn}
-                SearchMovie={SearchMovie}
-                movies={movies}
-                handleMovieSave={handleMovieSave}
-                handleMovieDeleteAllMovies={handleMovieDeleteAllMovies}
-              />
-            }
-          />
-          <Route
-            path="/saved-movies"
-            element={
-              <ProtectedRouteElement
-                element={SavedMovies}
-                loggedIn={loggedIn}
-                SearchSaveMovie={SearchSaveMovie}
-                handleMovieDelete={handleMovieDelete}
-              />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRouteElement
-                element={Profile}
-                loggedIn={loggedIn}
-                onUpdateUser={handleUpdateUser}
-                onSignOut={onSignOut}
-              />
-            }
-          />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-        {showFooter() && <Footer />}
-      </div>
+      <CurrentMoviesContext.Provider value={filterMovies}>
+        <div className="App">
+          {showHeader() && <Header loggedIn={loggedIn} />}
+          <Routes>
+            <Route
+              path="/signin"
+              element={<Login handleLogin={handleLogin} />}
+            />
+            <Route
+              path="/signup"
+              element={<Register handleRegister={handleRegister} />}
+            />
+            <Route path="/" element={<Main />} />
+            <Route
+              path="/movies"
+              element={
+                <ProtectedRouteElement
+                  element={Movies}
+                  loggedIn={loggedIn}
+                  SearchMovie={SearchMovie}
+                  movies={movies}
+                  handleMovieSave={handleMovieSave}
+                  handleMovieDeleteAllMovies={handleMovieDeleteAllMovies}
+                />
+              }
+            />
+            <Route
+              path="/saved-movies"
+              element={
+                <ProtectedRouteElement
+                  element={SavedMovies}
+                  loggedIn={loggedIn}
+                  SearchSaveMovie={SearchSaveMovie}
+                  handleMovieDelete={handleMovieDelete}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRouteElement
+                  element={Profile}
+                  loggedIn={loggedIn}
+                  onUpdateUser={handleUpdateUser}
+                  onSignOut={onSignOut}
+                />
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+          {showFooter() && <Footer />}
+        </div>
       </CurrentMoviesContext.Provider>
     </CurrentUserContext.Provider>
   );
