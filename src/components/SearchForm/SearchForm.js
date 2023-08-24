@@ -16,7 +16,7 @@ function SearchForm(props) {
   }, [isShort]);
 
   useEffect(() => {
-    if (props.Movies) {
+    if (props.isAllMovies) {
       const userSavedSearch =
         JSON.parse(localStorage.getItem("userMovie")) || [];
       if (userSavedSearch.length !== 0) {
@@ -45,7 +45,7 @@ function SearchForm(props) {
     <section className="searchMovie">
       <form className="searchForm" onSubmit={SearchMovies}>
         <input
-          required={props.Movies}
+          required={props.isAllMovies}
           minLength={1}
           value={movieRequest}
           type="text"

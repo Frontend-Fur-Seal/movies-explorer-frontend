@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
+import CurrentMoviesContext from "../../contexts/CurrentMoviesContext.js";
 import * as auth from "../../utils/Auth.js";
 import mainApi from "../../utils/MainApi.js";
 import Main from "../Main/Main.js";
@@ -29,7 +30,7 @@ function App() {
   const [allMovies, setAllMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
-  const [filterMovies, setFilterMovies] = useState(savedMovies);
+  const [filterMovies, setFilterMovies] = useState([]);
 
   useEffect(() => {
     const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
@@ -78,6 +79,7 @@ function App() {
       .getMovies()
       .then((data) => {
         setSavedMovies(data);
+        setFilterMovies(data);
       })
       .catch((error) => console.log(error));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -193,20 +195,36 @@ function App() {
     setFilterMovies(filteredList);
   }
 
-  function handleSaveMovie(movie) {
-    console.log(movie);
+  function handleMovieSave(movie) {
     mainApi
-      .saveMovie(movie)
+      .saveMovie({
+      country: movie.country,
+      director: movie.director,
+      duration: movie.duration,
+      year: movie.year,
+      description: movie.description,
+      trailerLink: movie.trailerLink,
+      nameRU: movie.nameRU,
+      nameEN: movie.nameEN,
+      image: `https://api.nomoreparties.co${movie.image.url}`,
+      thumbnail: `https://api.nomoreparties.co${movie.image.url}`,
+      movieId: movie.id,
+      })
       .then((movie) => {
-        setFilterMovies([movie, ...savedMovies]);
+        setFilterMovies([movie.data, ...filterMovies]);
       })
       .catch((error) => {
         console.log(`Ошибка ${error}`);
       });
   }
 
+  function handleMovieDelete(movie){
+    console.log(movie)
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
+          <CurrentMoviesContext.Provider value={filterMovies}>
       <div className="App">
         {showHeader() && <Header loggedIn={loggedIn} />}
         <Routes>
@@ -224,7 +242,7 @@ function App() {
                 loggedIn={loggedIn}
                 SearchMovie={SearchMovie}
                 movies={movies}
-                handleSaveMovie={handleSaveMovie}
+                handleMovieSave={handleMovieSave}
               />
             }
           />
@@ -235,7 +253,7 @@ function App() {
                 element={SavedMovies}
                 loggedIn={loggedIn}
                 SearchSaveMovie={SearchSaveMovie}
-                filterMovies={filterMovies}
+                handleMovieDelete={handleMovieDelete}
               />
             }
           />
@@ -254,6 +272,7 @@ function App() {
         </Routes>
         {showFooter() && <Footer />}
       </div>
+      </CurrentMoviesContext.Provider>
     </CurrentUserContext.Provider>
   );
 }

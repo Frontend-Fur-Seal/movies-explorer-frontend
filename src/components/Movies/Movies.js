@@ -2,12 +2,18 @@ import SearchForm from "../SearchForm/SearchForm.js";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.js";
 
 function Movies(props) {
-  
   return (
     <main className="main">
       <div className="movies">
-        <SearchForm Movies={true} newMovieFind={props.SearchMovie} FilterMovie={props.movies}/> 
-          <MoviesCardList FilterMovie={props.movies} handleSaveMovie={props.handleSaveMovie} Movies={true}/>
+        <SearchForm
+          isAllMovies={true}
+          newMovieFind={props.SearchMovie}
+        />
+        <MoviesCardList
+          movies={props.movies}
+          handleMovieSave={props.handleMovieSave}
+          isAllMovies={true}
+        />
       </div>
     </main>
   );

@@ -5,17 +5,20 @@ import {
   LG_INITIAL_CARD_COUNT,
   MD_INITIAL_CARD_COUNT,
   SM_INITIAL_CARD_COUNT,
-  } from "../../utils/constants.js"
+} from "../../utils/constants.js";
 
-import { React, Suspense, lazy, useState } from "react";
+import { React, Suspense, lazy, useState, useContext } from "react";
 import { useMediaQuery } from "../../hooks/useMediaQuery.js";
 import Preloader from "../Preloader/Preloader.js";
 import LoadMoreMovie from "../LoadMoreMovie/LoadMoreMovie.js";
+import CurrentMoviesContext from "../../contexts/CurrentMoviesContext.js";
 const MoviesCard = lazy(() => import("../MoviesCard/MoviesCard.js"));
 
 function MoviesCardList(props) {
-  
-  const filterMovies = props.FilterMovie;
+
+  const movies = props.movies; //state movies
+
+  const currentMovies = useContext(CurrentMoviesContext); // state saved movies
 
   const isDesktop = useMediaQuery("(min-width: 980px)");
   const isTablet = useMediaQuery("(min-width: 600px)");
@@ -56,16 +59,34 @@ function MoviesCardList(props) {
   return (
     <>
       <Suspense fallback={<Preloader />}>
+        {props.isAllMovies ? (
           <ul className="moviesCardList">
-          {filterMovies?.slice(0, roundedVisibleCardCount).map((movie) => (
-            <MoviesCard key={movie.id || movie.movieId} movie={movie} handleSaveMovie={props.handleSaveMovie} Movies={props.Movies}/>
-          ))}
-        </ul>
+            {movies?.slice(0, roundedVisibleCardCount).map((movie) => (
+              <MoviesCard
+                isAllMovies={props.isAllMovies}
+                key={movie.id}
+                movie={movie}
+                handleMovieSave={props.handleMovieSave}
+              />
+            ))}
+          </ul>
+        ) : (
+          <ul className="moviesCardList">
+            {currentMovies.map((movie) => (
+              <MoviesCard
+                isAllMovies={props.isAllMovies}
+                key={movie.movieId}
+                movie={movie}
+                handleMovieDelete={props.handleMovieDelete}
+              />
+            ))}
+          </ul>
+        )}
       </Suspense>
-      {visibleCardCount < filterMovies.length ? (
-        <LoadMoreMovie handleClick={handleClick} isShow={true}/>
+      {props.isAllMovies && visibleCardCount < movies.length ? (
+        <LoadMoreMovie handleClick={handleClick} isShow={true} />
       ) : (
-        <LoadMoreMovie handleClick={handleClick} isShow={false}/>
+        <LoadMoreMovie handleClick={handleClick} isShow={false} />
       )}
     </>
   );

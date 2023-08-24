@@ -1,71 +1,68 @@
-import { useState } from "react";
-
 function MoviesCard(props) {
-  const [movieSaveState, setmovieSaveState] = useState(false);
-  const isSaved = movieSaveState ? "" : "Сохранить";
 
   const movie = props.movie;
+
+  const savedMovie = props.movie;
+
+  //const isSaved = movie.id === savedMovie.movieId;
+
+  const isSaved = false;
+
+  const MovieSaveButtonClassName = `moviesCard__saveMovie ${
+    isSaved && "moviesCard__saveMovie_saved"
+  }`;
 
   function movieTime(value) {
     return `${Math.trunc(value / 60)}ч ${value % 60}м`;
   }
 
-  const {
-    id,
-    country,
-    director,
-    duration,
-    year,
-    description,
-    trailerLink,
-    nameRU,
-    nameEN,
-    image,
-  } = movie;
-
   const movieSave = {
-    country,
-    director,
-    duration,
-    year,
-    description,
-    trailerLink,
-    nameRU,
-    nameEN,
-    image: `https://api.nomoreparties.co${image.url}`,
-    thumbnail: `https://api.nomoreparties.co${image.url}`,
-    movieId: id,
+    country: movie.country,
+    director: movie.director,
+    duration: movie.duration,
+    year: movie.year,
+    description: movie.description,
+    trailerLink: movie.trailerLink,
+    nameRU: movie.nameRU,
+    nameEN: movie.nameEN,
+    image: `https://shapka-youtube.ru/wp-content/uploads/2021/03/kartinka-na-avatarku-dlya-devushek.jpg`,
+    thumbnail: `https://shapka-youtube.ru/wp-content/uploads/2021/03/kartinka-na-avatarku-dlya-devushek.jpg`,
+    movieId: movie.id,
   };
 
-  function handleChangeSaveMovie() {
-    props.handleChangeSaveMovie(movieSave);
+  function handleMovieDelete() {
+    props.handleMovieDelete(movieSave);
+  }
+
+  function handleMovieSave() {
+    props.handleMovieSave(movie);
   }
 
   return (
     <li className="moviesCard">
       <div className="moviesCard__img">
-        <a href={movie.trailerLink} rel="noreferrer" target="_blank">
+        <a
+          href={movie.trailerLink}
+          rel="noreferrer"
+          target="_blank"
+        >
           <img
             className="moviesCard__element"
             src={
-              props.Movies
+              props.isAllMovies
                 ? `https://api.nomoreparties.co${movie.image.url}`
-                : image
+                : movie.image
             }
             alt={movie.nameRU}
           />
         </a>
-          <button
-            onClick={handleChangeSaveMovie}
-            type="button"
-            className={`${
-              movieSaveState
-                ? "moviesCard__saveMovie_saved"
-                : "moviesCard__saveMovie"
-            }`}
-          >
-            {isSaved}
-          </button>
+        <button
+          onClick={isSaved ? handleMovieDelete : handleMovieSave}
+          type="button"
+          className={MovieSaveButtonClassName}
+        >
+          {isSaved ? "" : "Сохранить"}
+        </button>
       </div>
       <div className="moviesCard__info">
         <h2 className="moviesCard__name">{movie.nameRU}</h2>
