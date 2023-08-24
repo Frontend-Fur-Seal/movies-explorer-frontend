@@ -1,12 +1,12 @@
+import CurrentMoviesContext from "../../contexts/CurrentMoviesContext.js";
+import { useContext } from "react";
+
 function MoviesCard(props) {
 
+  const currentMovies = useContext(CurrentMoviesContext);
   const movie = props.movie;
 
-  const savedMovie = props.movie;
-
-  //const isSaved = movie.id === savedMovie.movieId;
-
-  const isSaved = false;
+  const isSaved = currentMovies.some((elem) => elem.movieId === movie.id);
 
   const MovieSaveButtonClassName = `moviesCard__saveMovie ${
     isSaved && "moviesCard__saveMovie_saved"
@@ -16,22 +16,8 @@ function MoviesCard(props) {
     return `${Math.trunc(value / 60)}ч ${value % 60}м`;
   }
 
-  const movieSave = {
-    country: movie.country,
-    director: movie.director,
-    duration: movie.duration,
-    year: movie.year,
-    description: movie.description,
-    trailerLink: movie.trailerLink,
-    nameRU: movie.nameRU,
-    nameEN: movie.nameEN,
-    image: `https://shapka-youtube.ru/wp-content/uploads/2021/03/kartinka-na-avatarku-dlya-devushek.jpg`,
-    thumbnail: `https://shapka-youtube.ru/wp-content/uploads/2021/03/kartinka-na-avatarku-dlya-devushek.jpg`,
-    movieId: movie.id,
-  };
-
   function handleMovieDelete() {
-    props.handleMovieDelete(movieSave);
+    props.handleMovieDelete(movie);
   }
 
   function handleMovieSave() {

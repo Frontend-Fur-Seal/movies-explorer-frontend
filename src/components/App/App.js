@@ -211,6 +211,7 @@ function App() {
       movieId: movie.id,
       })
       .then((movie) => {
+        setSavedMovies([movie.data, ...savedMovies])
         setFilterMovies([movie.data, ...filterMovies]);
       })
       .catch((error) => {

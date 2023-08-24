@@ -1,15 +1,16 @@
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import CurrentMoviesContext from "../../contexts/CurrentMoviesContext.js";
 
 function SearchForm(props) {
 
-  //console.log(props.FilterMovie.length)
+  const currentMovies = useContext(CurrentMoviesContext);
 
   const [movieRequest, setmovieRequest] = useState("");
   const [isShort, setIsShort] = useState(false);
 
   useEffect(() => {
-      if (movieRequest) {
+      if (movieRequest || (!props.isAllMovies && currentMovies.length !==0)) {
         props.newMovieFind(movieRequest, isShort);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
