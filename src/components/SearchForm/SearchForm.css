@@ -70,14 +70,14 @@
 @media screen and (max-width: 980px) {
     .searchForm{
         margin: 80px 30px 41px;
-        grid-template-rows: 50px 100px;
+        grid-template-rows: 50px 10px 100px;
     }
   }
 
   @media screen and (max-width: 600px) {
     .searchForm{
         margin: 75px 14px 41px;
-        grid-template-rows: 50px 105px;
+        grid-template-rows: 50px 10px 105px;
     }
     .searchForm__input{
         height: 44px;
