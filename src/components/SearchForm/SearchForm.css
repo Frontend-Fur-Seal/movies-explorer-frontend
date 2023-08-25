@@ -5,10 +5,21 @@
     grid-template-columns: 1fr 44px;
     grid-template-areas: 
     "searchInput searchButton"
+    "errorMessage ."
     "filterCheckBox filterCheckBox";
     align-items: center;
     border-bottom: 1px solid #424242;
     column-gap: 10px;
+}
+
+.searchForm__error{
+    grid-area: errorMessage;
+    padding-top: 5px;
+    padding-left: 5px;
+    min-height: 10px;
+    margin: 0;
+    color: #EE3465;
+    font-size: 10px;
 }
 
 .searchForm__input{

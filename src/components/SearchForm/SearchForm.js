@@ -1,14 +1,14 @@
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.js";
 import { useState, useEffect } from "react";
+import { Formik, Form, Field } from "formik";
 
 function SearchForm(props) {
-
   const [movieRequest, setmovieRequest] = useState("");
   const [isShort, setIsShort] = useState(false);
 
   useEffect(() => {
-      if (movieRequest || !props.isAllMovies) {
-        props.newMovieFind(movieRequest, isShort);
+    if (movieRequest || !props.isAllMovies) {
+      props.newMovieFind(movieRequest, isShort);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShort]);
@@ -26,37 +26,51 @@ function SearchForm(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function handleChangeMovie(e) {
-    setmovieRequest(e.target.value);
-  }
-
-  function SearchMovies(e) {
-    e.preventDefault();
-    props.newMovieFind(movieRequest, isShort);
-  }
-
   function changeMoviesLength() {
     setIsShort(!isShort);
   }
 
+  function validateSearch(value){
+    let error;
+    if (!value && props.isAllMovies) {
+      error = "Поле обязательно к заполнению";
+    } else if (value.length < 2) {
+      error = "Введите больше значений для поиска";
+    } else if (value.length > 30) {
+      error = "Введите меньше значений для поиска";
+    }
+    return error;
+  }
+
   return (
     <section className="searchMovie">
-      <form className="searchForm" onSubmit={SearchMovies}>
-        <input
-          required={props.isAllMovies}
-          minLength={1}
-          value={movieRequest}
-          type="text"
-          className="searchForm__input"
-          placeholder="Фильм"
-          onChange={handleChangeMovie}
-        />
-        <button type="submit" className="searchForm__submit"></button>
-        <FilterCheckbox
-          changeMoviesLength={changeMoviesLength}
-          isShort={isShort}
-        />
-      </form>
+      <Formik
+        initialValues={{
+          search: movieRequest,
+        }}
+        enableReinitialize={true}
+        onSubmit={(values) => {
+          props.newMovieFind(values.search, isShort);
+        }}
+      >
+        {({ errors, touched, isValid }) => (
+          <Form className="searchForm">
+            <Field
+              validate={validateSearch}
+              name="search"
+              type="text"
+              className="searchForm__input"
+              placeholder="Фильм"
+            />
+            <button type="submit" className="searchForm__submit"></button>
+            <p className="searchForm__error">{errors.search}</p>
+            <FilterCheckbox
+              changeMoviesLength={changeMoviesLength}
+              isShort={isShort}
+            />
+          </Form>
+        )}
+      </Formik>
     </section>
   );
 }
