@@ -17,6 +17,7 @@ import Login from "../Login/Login.js";
 import ProtectedRouteElement from "../../utils/ProtectedRoute.js";
 import MoviesApi from "../../utils/MoviesApi";
 import filterData from "../../utils/FilterMovie.js";
+import Infotooltip from "../Infotooltip/Infotooltip.js";
 
 function App() {
   // Hooks
@@ -32,6 +33,8 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]);
+  const [isInfotooltipOpenOk, setIsInfotooltipOpenOk] = useState(false);
+  const [isInfotooltipOpenError, setIsInfotooltipOpenError] = useState(false);
 
   useEffect(() => {
     const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
@@ -118,6 +121,7 @@ function App() {
       })
       .catch((error) => {
         console.log(`Ошибка ${error}`);
+        handleInfotooltipOpenError();
       });
   };
 
@@ -129,6 +133,7 @@ function App() {
       })
       .catch((error) => {
         console.log(`Ошибка ${error}`);
+        handleInfotooltipOpenError();
       });
   };
 
@@ -156,8 +161,12 @@ function App() {
       .postInitialUser({ name, email })
       .then((res) => {
         setCurrentUser(res.data);
+        handleInfotooltipOpenOk();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        handleInfotooltipOpenError();
+        console.error(err);
+      });
   }
 
   // Movies
@@ -241,6 +250,19 @@ function App() {
     });
   }
 
+  function handleInfotooltipOpenOk() {
+    setIsInfotooltipOpenOk(!isInfotooltipOpenOk);
+  }
+
+  function handleInfotooltipOpenError() {
+    setIsInfotooltipOpenError(!isInfotooltipOpenError);
+  }
+
+  function closeAllPopups() {
+    setIsInfotooltipOpenOk(false);
+    setIsInfotooltipOpenError(false);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CurrentMoviesContext.Provider value={filterMovies}>
@@ -294,6 +316,18 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           {showFooter() && <Footer />}
+          <Infotooltip
+            name={"infotool"}
+            isOpen={isInfotooltipOpenOk}
+            onClose={closeAllPopups}
+            resOk={true}
+          />
+          <Infotooltip
+            name={"infotool"}
+            isOpen={isInfotooltipOpenError}
+            onClose={closeAllPopups}
+            resOk={false}
+          />
         </div>
       </CurrentMoviesContext.Provider>
     </CurrentUserContext.Provider>
