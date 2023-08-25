@@ -129,7 +129,7 @@ function App() {
     auth
       .register(name, email, password)
       .then(() => {
-        navigate("/signin");
+        handleLogin(email, password)
       })
       .catch((error) => {
         console.log(`Ошибка ${error}`);

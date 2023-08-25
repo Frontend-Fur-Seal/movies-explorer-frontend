@@ -2,7 +2,7 @@ import FormData from "../FormData/FormData.js";
 import { Formik, Form, Field } from "formik";
 
 function Register({ handleRegister }) {
-  
+
   function validateName(value) {
     let error;
     if (!value) {
@@ -47,6 +47,7 @@ function Register({ handleRegister }) {
       >
         <Formik
           initialValues={{
+            name: "",
             email: "",
             password: "",
           }}
