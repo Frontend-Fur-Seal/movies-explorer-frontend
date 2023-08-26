@@ -53,7 +53,7 @@ function MoviesCard(props) {
           <button
             onClick={handleMovieDelete}
             type="button"
-            className="moviesCard__saveMovie_saved"
+            className="moviesCard__saveMovie_delete"
           ></button>
         )}
       </div>

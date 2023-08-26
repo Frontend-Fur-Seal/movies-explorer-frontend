@@ -79,6 +79,21 @@ list-style-type:none;
   cursor: pointer;
 }
 
+.moviesCard__saveMovie_delete{
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: #EE3465;
+    background-image: url(../../images/deleteMovie.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    border: none;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+  }
+
 .moviesCard__saveMovie:hover{
     background-color: #fff;
     color: #313131;
