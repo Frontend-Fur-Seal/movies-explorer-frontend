@@ -1,6 +1,13 @@
 /* eslint-disable eqeqeq */
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
+import ProtectedRouteElement from "../../utils/ProtectedRoute.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import CurrentMoviesContext from "../../contexts/CurrentMoviesContext.js";
 import * as auth from "../../utils/Auth.js";
@@ -14,7 +21,6 @@ import Profile from "../Profile/Profile.js";
 import NotFoundPage from "../NotFoundPage/NotFoundPage.js";
 import Register from "../Register/Register.js";
 import Login from "../Login/Login.js";
-import ProtectedRouteElement from "../../utils/ProtectedRoute.js";
 import MoviesApi from "../../utils/MoviesApi";
 import filterData from "../../utils/FilterMovie.js";
 import Infotooltip from "../Infotooltip/Infotooltip.js";
@@ -36,15 +42,7 @@ function App() {
   const [isInfotooltipOpenOk, setIsInfotooltipOpenOk] = useState(false);
   const [isInfotooltipOpenError, setIsInfotooltipOpenError] = useState(false);
   const [notFoundMovie, setNotFoundMovie] = useState(false);
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
-    if (userSavedSearch.length !== 0) {
-      const { filteredList } = userSavedSearch;
-      setMovies(filteredList);
-    }
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   // Api
 
@@ -58,10 +56,18 @@ function App() {
   // useEffects
 
   useEffect(() => {
+    const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
+    if (userSavedSearch.length !== 0) {
+      const { filteredList } = userSavedSearch;
+      setMovies(filteredList);
+    }
+  }, []);
+
+  useEffect(() => {
     auth
       .checkToken()
       .then(() => {
-        confirmUser();
+        setLoggedIn(true);
       })
       .catch(() => {
         setLoggedIn(false);
@@ -131,7 +137,7 @@ function App() {
     auth
       .register(name, email, password)
       .then(() => {
-        handleLogin(email, password)
+        handleLogin(email, password);
       })
       .catch((error) => {
         console.log(`Ошибка ${error}`);
@@ -180,11 +186,11 @@ function App() {
   }
 
   function SearchMovieApi(movieRequest, isShort) {
-    setLoading(true)
+    setLoading(true);
     api
       .getMovies()
       .then((data) => {
-        setLoading(false)
+        setLoading(false);
         setAllMovies(data);
         addLocalStorage(data, movieRequest, isShort);
       })
@@ -198,10 +204,10 @@ function App() {
 
   function addLocalStorage(data, movieRequest, isShort) {
     const filteredList = filterData(data, movieRequest, isShort);
-    if(filteredList.length === 0){
-      setNotFoundMovie(true)
-    }else{
-      setNotFoundMovie(false)
+    if (filteredList.length === 0) {
+      setNotFoundMovie(true);
+    } else {
+      setNotFoundMovie(false);
       setMovies(filteredList);
       localStorage.setItem(
         "userMovie",
@@ -278,15 +284,27 @@ function App() {
         <div className="App">
           {showHeader() && <Header loggedIn={loggedIn} />}
           <Routes>
+            <Route path="/" element={<Main />} />
             <Route
               path="/signin"
-              element={<Login handleLogin={handleLogin} />}
+              element={
+                loggedIn ? (
+                  <Navigate to="/movies" replace />
+                ) : (
+                  <Login handleLogin={handleLogin} />
+                )
+              }
             />
             <Route
               path="/signup"
-              element={<Register handleRegister={handleRegister} />}
+              element={
+                loggedIn ? (
+                  <Navigate to="/movies" />
+                ) : (
+                  <Register handleRegister={handleRegister} />
+                )
+              }
             />
-            <Route path="/" element={<Main />} />
             <Route
               path="/movies"
               element={
