@@ -32,13 +32,9 @@ function SearchForm(props) {
 
   function validateSearch(value){
     let error;
-    if (!value && props.isAllMovies) {
-      error = "Поле обязательно к заполнению";
-    } else if (value.length < 2) {
-      error = "Введите больше значений для поиска";
-    } else if (value.length > 30) {
-      error = "Введите меньше значений для поиска";
-    }
+    if (!value) {
+      error = "Нужно ввести ключевое слово";
+    } 
     return error;
   }
 
