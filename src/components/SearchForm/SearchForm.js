@@ -7,7 +7,7 @@ function SearchForm(props) {
   const [isShort, setIsShort] = useState(false);
 
   useEffect(() => {
-    if (movieRequest || !props.isAllMovies) {
+    if (movieRequest) {
       props.newMovieFind(movieRequest, isShort);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
