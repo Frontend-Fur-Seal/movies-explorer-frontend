@@ -1,6 +1,5 @@
 function filterData(data, movieRequest, isShort) {
   let ourList = data;
-  if (movieRequest) {
     ourList = data.filter(
       (movie) =>
         checkValue(movie.nameRU, movieRequest) ||
@@ -9,7 +8,6 @@ function filterData(data, movieRequest, isShort) {
     function checkValue(obj, value) {
       return obj.toLowerCase().indexOf(value.toLowerCase()) !== -1;
     }
-  }
   if (isShort) {
     return ourList.filter((movie) => movie.duration < 40);
   }
