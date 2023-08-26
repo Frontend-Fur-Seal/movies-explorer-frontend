@@ -35,7 +35,8 @@ function App() {
   const [filterMovies, setFilterMovies] = useState([]);
   const [isInfotooltipOpenOk, setIsInfotooltipOpenOk] = useState(false);
   const [isInfotooltipOpenError, setIsInfotooltipOpenError] = useState(false);
-  const [notFoundMovie, setNotFoundMovie] = useState(false)
+  const [notFoundMovie, setNotFoundMovie] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
@@ -179,9 +180,11 @@ function App() {
   }
 
   function SearchMovieApi(movieRequest, isShort) {
+    setLoading(true)
     api
       .getMovies()
       .then((data) => {
+        setLoading(false)
         setAllMovies(data);
         addLocalStorage(data, movieRequest, isShort);
       })
@@ -292,6 +295,7 @@ function App() {
                   loggedIn={loggedIn}
                   SearchMovie={SearchMovie}
                   movies={movies}
+                  loading={loading}
                   handleMovieSave={handleMovieSave}
                   handleMovieDeleteAllMovies={handleMovieDeleteAllMovies}
                   notFoundMovie={notFoundMovie}
