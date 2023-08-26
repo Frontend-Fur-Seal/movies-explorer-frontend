@@ -35,6 +35,7 @@ function App() {
   const [filterMovies, setFilterMovies] = useState([]);
   const [isInfotooltipOpenOk, setIsInfotooltipOpenOk] = useState(false);
   const [isInfotooltipOpenError, setIsInfotooltipOpenError] = useState(false);
+  const [notFoundMovie, setNotFoundMovie] = useState(false)
 
   useEffect(() => {
     const userSavedSearch = JSON.parse(localStorage.getItem("userMovie")) || [];
@@ -194,11 +195,16 @@ function App() {
 
   function addLocalStorage(data, movieRequest, isShort) {
     const filteredList = filterData(data, movieRequest, isShort);
-    setMovies(filteredList);
-    localStorage.setItem(
-      "userMovie",
-      JSON.stringify({ movieRequest, filteredList, isShort })
-    );
+    if(filteredList.length === 0){
+      setNotFoundMovie(true)
+    }else{
+      setNotFoundMovie(false)
+      setMovies(filteredList);
+      localStorage.setItem(
+        "userMovie",
+        JSON.stringify({ movieRequest, filteredList, isShort })
+      );
+    }
   }
 
   // Save Movies
@@ -288,6 +294,7 @@ function App() {
                   movies={movies}
                   handleMovieSave={handleMovieSave}
                   handleMovieDeleteAllMovies={handleMovieDeleteAllMovies}
+                  notFoundMovie={notFoundMovie}
                 />
               }
             />

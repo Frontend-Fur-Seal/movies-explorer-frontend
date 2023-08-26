@@ -7,7 +7,7 @@ function Movies(props) {
     <main className="main">
       <div className="movies">
         <SearchForm isAllMovies={true} newMovieFind={props.SearchMovie} />
-        {props.movies.length === 0 ? (
+        {props.notFoundMovie ? (
           <NotFoundMovie />
         ) : (
           <MoviesCardList

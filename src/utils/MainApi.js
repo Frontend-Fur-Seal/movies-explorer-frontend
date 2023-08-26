@@ -68,11 +68,13 @@ class MainApi {
   }
   
   const mainApi = new MainApi({
-    baseUrl: "https://api.diploma.sherstnev.nomoredomains.xyz",
+    baseUrl: "http://localhost:3000",
     headers: {
       "Content-Type": "application/json",
     },
   });
   
   export default mainApi;
+
+  //https://api.diploma.sherstnev.nomoredomains.xyz
   

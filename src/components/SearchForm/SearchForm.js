@@ -7,13 +7,6 @@ function SearchForm(props) {
   const [isShort, setIsShort] = useState(false);
 
   useEffect(() => {
-    if (movieRequest) {
-      props.newMovieFind(movieRequest, isShort);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isShort]);
-
-  useEffect(() => {
     if (props.isAllMovies) {
       const userSavedSearch =
         JSON.parse(localStorage.getItem("userMovie")) || [];
@@ -26,6 +19,13 @@ function SearchForm(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (movieRequest) {
+      props.newMovieFind(movieRequest, isShort);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isShort]);
+
   function changeMoviesLength() {
     setIsShort(!isShort);
   }
@@ -36,6 +36,10 @@ function SearchForm(props) {
       error = "Нужно ввести ключевое слово";
     } 
     return error;
+  }
+
+  function handleChange(e){
+    setmovieRequest(e.target.value)
   }
 
   return (
@@ -57,12 +61,14 @@ function SearchForm(props) {
               type="text"
               className="searchForm__input"
               placeholder="Фильм"
+              onChange={handleChange}          
             />
             <button type="submit" className="searchForm__submit"></button>
             <p className="searchForm__error">{errors.search}</p>
             <FilterCheckbox
               changeMoviesLength={changeMoviesLength}
               isShort={isShort}
+              movieRequest={movieRequest}
             />
           </Form>
         )}
