@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.diploma.sherstnev.nomoredomains.xyz';
+export const BASE_URL = 'http://localhost:3000';
 
 function checkStatus(res) {
   return res.ok ? res.json() : Promise.reject(res.status);
