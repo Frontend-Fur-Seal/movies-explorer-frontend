@@ -1,73 +1,91 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Formik, Form, Field } from "formik";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
-function Profile() {
-  const [disableInput, setDisableInput] = useState(true);
+function Profile({ onUpdateUser, onSignOut }) {
+  const currentUser = useContext(CurrentUserContext);
 
-  function editUser(e) {
-    e.preventDefault();
-    setDisableInput(!disableInput);
+  function validateName(value) {
+    let error;
+    if (!value) {
+      error = "Поле обязательно к заполнению";
+    } else if (value.length < 2) {
+      error = "Слишком короткое имя";
+    } else if (value.length > 30) {
+      error = "Имя слишком длинное";
+    }
+    return error;
+  }
+
+  function validateEmail(value) {
+    let error;
+    if (!value) {
+      error = "Поле обязательно к заполнению";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+      error = "Некорректный email";
+    }
+    return error;
   }
 
   return (
     <main className="main">
       <section className="profile">
-        <h1 className="profile__title">Привет, Владимир</h1>
-        <form className="profile__form">
-          <div className="profile__inputs">
-            <div className="profile__name">
-              <label htmlFor="inputChange-name" className="profile__label">
-                Имя
-              </label>
-              <input
-                placeholder="Имя"
-                value={"Владимир"}
-                id="inputChange-name"
-                minLength={2}
-                maxLength={20}
-                type="text"
-                className="profile__input"
-                disabled={disableInput}
-                ref={input => input && input.focus()}
-              />
-            </div>
-            <div className="profile__email">
-              <label htmlFor="inputChange-email" className="profile__label">
-                Email
-              </label>
-              <input
-                placeholder="Email"
-                value={"test@test.ru"}
-                id="inputChange-email"
-                minLength={2}
-                maxLength={20}
-                type="email"
-                className="profile__input"
-                disabled={disableInput}
-              />
-            </div>
-          </div>
-          {disableInput ? (
-            <button
-              type="button"
-              className="profile__change"
-              onClick={editUser}
-            >
-              Редактировать
-            </button>
-          ) : (
-            <button
-              type="submit"
-              className="profile__change"
-              onClick={editUser}
-            >
-              Сохранить
-            </button>
+        <h1 className="profile__title">Привет, {currentUser.name}</h1>
+        <Formik
+          enableReinitialize={true}
+          initialValues={{
+            name: currentUser.name,
+            email: currentUser.email,
+          }}
+          onSubmit={(values) => {
+            onUpdateUser(values.name, values.email);
+          }}
+        >
+          {({ errors, isValid, dirty }) => (
+            <Form className="profile__form">
+              <div className="profile__inputs">
+                <div className="profile__name">
+                  <label htmlFor="inputChange-name" className="profile__label">
+                    Имя
+                  </label>
+                  <Field
+                    name="name"
+                    validate={validateName}
+                    placeholder="Имя"
+                    id="inputChange-name"
+                    type="text"
+                    className="profile__input"
+                  />
+                </div>
+                <p className="form__error form__error_ProfileName">{errors.name}</p>
+                <div className="profile__email">
+                  <label htmlFor="inputChange-email" className="profile__label">
+                    Email
+                  </label>
+                  <Field
+                    name="email"
+                    validate={validateEmail}
+                    placeholder="Email"
+                    id="inputChange-email"
+                    type="email"
+                    className="profile__input"
+                  />
+                </div>
+                <p className="form__error">{errors.email}</p>
+              </div>
+              <button
+                type="submit"
+                className="profile__change"
+                disabled={!(isValid && dirty)}
+              >
+                Сохранить
+              </button>
+            </Form>
           )}
-        </form>
-        <Link to="/" className="profile__signOut">
+        </Formik>
+        <button className="profile__signOut" onClick={onSignOut}>
           Выйти из аккаунта
-        </Link>
+        </button>
       </section>
     </main>
   );

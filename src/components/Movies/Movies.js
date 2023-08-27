@@ -1,14 +1,25 @@
 import SearchForm from "../SearchForm/SearchForm.js";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.js";
-import LoadMoreMovie from "../LoadMoreMovie/LoadMoreMovie.js";
+import NotFoundMovie from "../NotFoundMovie/NotFoundMovie.js";
+import Preloader from "../Preloader/Preloader.js";
 
-function Movies() {
+function Movies(props) {
   return (
     <main className="main">
       <div className="movies">
-        <SearchForm />
-        <MoviesCardList />
-        <LoadMoreMovie />
+        <SearchForm isAllMovies={true} newMovieFind={props.SearchMovie} />
+        {props.loading ? (
+          <Preloader />
+        ) : props.notFoundMovie ? (
+          <NotFoundMovie />
+        ) : (
+          <MoviesCardList
+            movies={props.movies}
+            handleMovieSave={props.handleMovieSave}
+            handleMovieDeleteAllMovies={props.handleMovieDeleteAllMovies}
+            isAllMovies={true}
+          />
+        )}
       </div>
     </main>
   );

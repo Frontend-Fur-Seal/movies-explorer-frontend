@@ -59,12 +59,16 @@
 	border-radius: 50%;
 }
 
-.filterCheckbox__input:checked ~ .filterCheckbox__mark{
+.filterCheckbox__input_short ~ .filterCheckbox__mark{
 	background: #3DDC84;
 }
 
-.filterCheckbox__input:checked ~ .filterCheckbox__mark:before{
+.filterCheckbox__input_short ~ .filterCheckbox__mark:before{
 	left: 24px;
+}
+
+.filterCheckbox__input_short ~ .filterCheckbox__mark:hover{
+	background: #93e6b9;
 }
 
 .filterCheckbox__mark:hover{

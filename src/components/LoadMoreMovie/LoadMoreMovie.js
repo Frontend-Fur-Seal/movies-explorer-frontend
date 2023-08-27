@@ -1,10 +1,19 @@
-function LoadMoreMovie() {
+function LoadMoreMovie(props) {
+  return (
+    <div className="loadMoreMovie">
+      {props.isShow ? (
+        <button
+          type="button"
+          className="loadMoreMovie__button"
+          onClick={props.handleClick}
+        >
+          Еще
+        </button>
+      ) : (
+        ""
+      )}
+    </div>
+  );
+}
 
-    return (
-      <div className="loadMoreMovie">
-        <button type="button" className="loadMoreMovie__button">Еще</button>
-      </div>
-    );
-  }
-  
-  export default LoadMoreMovie;
+export default LoadMoreMovie;
